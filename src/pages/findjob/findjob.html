@@ -7,12 +7,18 @@
 <ion-content >
   <ion-list >
     <ion-item>
-        Herbology
-      <ion-icon name="rose" item-end></ion-icon>
+      <ion-label>授课方式</ion-label>
+      <ion-select [(ngModel)]="teach_type">
+        <ion-option value="internet">网络</ion-option>
+        <ion-option value="home">上门</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item>
-        Herbology
-      <ion-icon name="rose" item-end></ion-icon>
+      <ion-label>性别</ion-label>
+      <ion-select [(ngModel)]="sex">
+        <ion-option value="man">男</ion-option>
+        <ion-option value="women">女</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item>
         Herbology

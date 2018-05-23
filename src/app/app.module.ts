@@ -12,6 +12,7 @@ import { FindJobPage } from '../pages/findjob/findjob';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { SearchPage } from '../pages/common/search/search';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     TabsPage,
     OfferJobPage,
-    FindJobPage
+    FindJobPage,
+    SearchPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     OfferJobPage,
     FindJobPage,
-    TabsPage
+    TabsPage,
+    SearchPage
   ],
   providers: [
     StatusBar,

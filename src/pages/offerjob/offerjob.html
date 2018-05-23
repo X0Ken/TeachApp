@@ -1,17 +1,75 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>找家教</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content >
+  <ion-list >
+    <ion-item>
+      <ion-label>授课方式</ion-label>
+      <ion-select [(ngModel)]="teach_type">
+        <ion-option value="internet">网络</ion-option>
+        <ion-option value="home">上门</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>性别</ion-label>
+      <ion-select [(ngModel)]="sex">
+        <ion-option value="man">男</ion-option>
+        <ion-option value="women">女</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label (click)="goSearch()">就读\毕业院校</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>最高学历</ion-label>
+      <ion-select [(ngModel)]="xl">
+        <ion-option value="man">本科</ion-option>
+        <ion-option value="women">硕士</ion-option>
+        <ion-option value="womenx">博士</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>预计薪资</ion-label>
+      <ion-select [(ngModel)]="xz">
+        <ion-option value="man">10-20</ion-option>
+        <ion-option value="women">20-30</ion-option>
+        <ion-option value="womenx">30-40</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label (click)="goSearch()">地区</ion-label>
+    </ion-item>
+    <ion-item>
+      
+      <ion-label>科目</ion-label>
+      <ion-select [(ngModel)]="km">
+        <ion-option value="man">语文</ion-option>
+        <ion-option value="women">数学</ion-option>
+        <ion-option value="womenx1">英语</ion-option>
+        <ion-option value="womenx2">政治</ion-option>
+        <ion-option value="womenx3">物理</ion-option>
+        <ion-option value="womenx4">地理</ion-option>
+        <ion-option value="womenx5">化学</ion-option>
+        <ion-option value="womenx6">生物</ion-option>
+        <ion-option value="womenx7">历史</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      
+      <ion-label>授课时间</ion-label>
+      <ion-select [(ngModel)]="sj">
+        <ion-option value="man">上午</ion-option>
+        <ion-option value="women">下午</ion-option>
+        <ion-option value="womenx1">晚上</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <button ion-button round full (click)="submit()">发布需求</button>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+
