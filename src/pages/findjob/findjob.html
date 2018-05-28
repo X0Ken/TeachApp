@@ -1,32 +1,18 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>找家教</ion-title>
+    <ion-title>当家教</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content >
-  <ion-list >
-    <ion-item>
-      <ion-label>授课方式</ion-label>
-      <ion-select [(ngModel)]="teach_type">
-        <ion-option value="internet">网络</ion-option>
-        <ion-option value="home">上门</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>性别</ion-label>
-      <ion-select [(ngModel)]="sex">
-        <ion-option value="man">男</ion-option>
-        <ion-option value="women">女</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-        Herbology
-      <ion-icon name="rose" item-end></ion-icon>
-    </ion-item>
-    <ion-item>
-        Herbology
-      <ion-icon name="rose" item-end></ion-icon>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-avatar item-start>
+        <img src="img/avatar-finn.png">
+      </ion-avatar>
+      <h2>{{ item.subject }} - {{ item.method }}</h2>
+      <h3>{{ item.time }}</h3>
+      <p>{{ item.region }} - {{ item.highest_education }} - {{ item.pay }} - {{ item.school }}</p>
     </ion-item>
   </ion-list>
 </ion-content>

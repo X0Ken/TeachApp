@@ -13,15 +13,18 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController, params: NavParams) {
     this.callback = params.get("callback")
+    this.items = params.get("items")
     this.initializeItems();
 
   }
 
   initializeItems() {
-    this.items = [
-      'Amsterdam',
-      'Bogota'
-    ];
+    if (this.items == null){
+      this.items = [
+        'Amsterdam',
+        'Bogota'
+      ];
+    }
   }
 
   getItems(ev: any) {

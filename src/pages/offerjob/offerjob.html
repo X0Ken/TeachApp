@@ -8,62 +8,63 @@
   <ion-list >
     <ion-item>
       <ion-label>授课方式</ion-label>
-      <ion-select [(ngModel)]="teach_type">
-        <ion-option value="internet">网络</ion-option>
-        <ion-option value="home">上门</ion-option>
+      <ion-select [(ngModel)]="method">
+        <ion-option value="网络">网络</ion-option>
+        <ion-option value="上门">上门</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>性别</ion-label>
-      <ion-select [(ngModel)]="sex">
-        <ion-option value="man">男</ion-option>
-        <ion-option value="women">女</ion-option>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="男">男</ion-option>
+        <ion-option value="女">女</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label (click)="goSearch()">就读\毕业院校</ion-label>
+      <ion-label (click)="goSearchSchool()">就读\毕业院校</ion-label>
     </ion-item>
     <ion-item>
       <ion-label>最高学历</ion-label>
-      <ion-select [(ngModel)]="xl">
-        <ion-option value="man">本科</ion-option>
-        <ion-option value="women">硕士</ion-option>
-        <ion-option value="womenx">博士</ion-option>
+      <ion-select [(ngModel)]="highest_education">
+        <ion-option value="本科">本科</ion-option>
+        <ion-option value="硕士">硕士</ion-option>
+        <ion-option value="博士">博士</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>预计薪资</ion-label>
-      <ion-select [(ngModel)]="xz">
-        <ion-option value="man">10-20</ion-option>
-        <ion-option value="women">20-30</ion-option>
-        <ion-option value="womenx">30-40</ion-option>
+      <ion-select [(ngModel)]="pay">
+        <ion-option value="10-20">10-20</ion-option>
+        <ion-option value="20-30">20-30</ion-option>
+        <ion-option value="30-40">30-40</ion-option>
+        <ion-option value="面谈">面谈</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label (click)="goSearch()">地区</ion-label>
+      <ion-label (click)="goSearchRegion()">地区</ion-label>
     </ion-item>
     <ion-item>
       
       <ion-label>科目</ion-label>
-      <ion-select [(ngModel)]="km">
-        <ion-option value="man">语文</ion-option>
-        <ion-option value="women">数学</ion-option>
-        <ion-option value="womenx1">英语</ion-option>
-        <ion-option value="womenx2">政治</ion-option>
-        <ion-option value="womenx3">物理</ion-option>
-        <ion-option value="womenx4">地理</ion-option>
-        <ion-option value="womenx5">化学</ion-option>
-        <ion-option value="womenx6">生物</ion-option>
-        <ion-option value="womenx7">历史</ion-option>
+      <ion-select [(ngModel)]="subject">
+        <ion-option value="语文">语文</ion-option>
+        <ion-option value="数学">数学</ion-option>
+        <ion-option value="英语">英语</ion-option>
+        <ion-option value="政治">政治</ion-option>
+        <ion-option value="物理">物理</ion-option>
+        <ion-option value="地理">地理</ion-option>
+        <ion-option value="化学">化学</ion-option>
+        <ion-option value="生物">生物</ion-option>
+        <ion-option value="历史">历史</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       
       <ion-label>授课时间</ion-label>
-      <ion-select [(ngModel)]="sj">
-        <ion-option value="man">上午</ion-option>
-        <ion-option value="women">下午</ion-option>
-        <ion-option value="womenx1">晚上</ion-option>
+      <ion-select [(ngModel)]="time">
+        <ion-option value="上午">上午</ion-option>
+        <ion-option value="下午">下午</ion-option>
+        <ion-option value="晚上">晚上</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
