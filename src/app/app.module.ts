@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { OfferJobPage } from '../pages/offerjob/offerjob';
 import { FindJobPage } from '../pages/findjob/findjob';
+import { UserPage } from '../pages/user/user';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,7 +25,8 @@ import { SearchPage } from '../pages/common/search/search';
     TabsPage,
     OfferJobPage,
     FindJobPage,
-    SearchPage
+    SearchPage,
+    UserPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { SearchPage } from '../pages/common/search/search';
     OfferJobPage,
     FindJobPage,
     TabsPage,
-    SearchPage
+    SearchPage,
+    UserPage
   ],
   providers: [
     StatusBar,
