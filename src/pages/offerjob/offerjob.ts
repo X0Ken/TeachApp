@@ -9,7 +9,7 @@ import { SearchPage } from '../common/search/search';
   templateUrl: 'offerjob.html'
 })
 export class OfferJobPage {
-  path: string = 'http://localhost:8888/jobs';
+  path: string = 'http://47.104.87.111:8888/jobs';
   method: string = '';
   school: string = '';
   region: string = '';
@@ -72,6 +72,9 @@ export class OfferJobPage {
     this.http.post(this.path, job)
     .subscribe(data => {
       console.log(data);
+    },
+    error =>{
+      console.error("This line is never called ",error);
     });
    }
 
