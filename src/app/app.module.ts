@@ -11,6 +11,12 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { OfferJobPage } from '../pages/offerjob/offerjob';
 import { FindJobPage } from '../pages/findjob/findjob';
 import { UserPage } from '../pages/user/user';
+import { AllOrderPage } from '../pages/order/allorder/allorder';
+import { OrderTabsPage } from '../pages/order/ordertabs/ordertabs';
+import { OrderDonePage } from '../pages/order/order-done/order-done';
+import { OrderGoingPage } from '../pages/order/order-going/order-going';
+import { OrderListAllPage } from '../pages/order/order-list-all/order-list-all';
+import { OrderNeedConfirmedPage } from '../pages/order/order-need-confirmed/order-need-confirmed';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,7 +32,13 @@ import { SearchPage } from '../pages/common/search/search';
     OfferJobPage,
     FindJobPage,
     SearchPage,
-    UserPage
+    UserPage,
+    AllOrderPage,
+    OrderTabsPage,
+    OrderDonePage,
+    OrderGoingPage,
+    OrderListAllPage,
+    OrderNeedConfirmedPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +56,13 @@ import { SearchPage } from '../pages/common/search/search';
     FindJobPage,
     TabsPage,
     SearchPage,
-    UserPage
+    UserPage,
+    AllOrderPage,
+    OrderTabsPage,
+    OrderDonePage,
+    OrderGoingPage,
+    OrderListAllPage,
+    OrderNeedConfirmedPage
   ],
   providers: [
     StatusBar,

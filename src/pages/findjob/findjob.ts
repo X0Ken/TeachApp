@@ -21,7 +21,7 @@ export class FindJobPage {
 
 
   initializeItems() {
-    this.items = []
+    this.items = [];
     //this.load_data()
   }
 

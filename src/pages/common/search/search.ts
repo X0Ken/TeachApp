@@ -12,8 +12,8 @@ export class SearchPage {
   callback;
 
   constructor(public navCtrl: NavController, params: NavParams) {
-    this.callback = params.get("callback")
-    this.items = params.get("items")
+    this.callback = params.get("callback");
+    this.items = params.get("items");
     this.initializeItems();
 
   }
