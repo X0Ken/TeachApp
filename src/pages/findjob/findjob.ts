@@ -3,15 +3,18 @@ import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
 
+import { GlobalSettingService } from '../global';
+
 @Component({
   selector: 'page-find-job',
   templateUrl: 'findjob.html'
 })
 export class FindJobPage {
   items: Array<any>;
-  path: string = 'http://47.104.87.111:8888/jobs';
+  path: string = '/jobs';
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController,
+    public globalSetting:GlobalSettingService) {
     this.initializeItems();
   }
 
@@ -28,7 +31,8 @@ export class FindJobPage {
 
 
   load_data(){
-    this.http.get(this.path)
+    var url = this.globalSetting.serverAddress + this.path;
+    this.http.get(url)
     .subscribe(data => {
       console.log(data);
       this.items = (data as any).jobs;

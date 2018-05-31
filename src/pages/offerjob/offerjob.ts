@@ -3,13 +3,14 @@ import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 import { SearchPage } from '../common/search/search';
+import { GlobalSettingService } from '../global';
 
 @Component({
   selector: 'page-offer-job',
   templateUrl: 'offerjob.html'
 })
 export class OfferJobPage {
-  path: string = 'http://47.104.87.111:8888/jobs';
+  path: string = '/jobs';
   method: string = '';
   school: string = '';
   region: string = '';
@@ -19,7 +20,8 @@ export class OfferJobPage {
   subject: string = '';
   time: string = '';
 
-  constructor(public navCtrl: NavController, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public http: HttpClient,
+    public globalSetting:GlobalSettingService) {
 
   }
 
@@ -69,7 +71,8 @@ export class OfferJobPage {
       "subject": this.subject,
       "time": this.time}
      }
-    this.http.post(this.path, job)
+     var url = this.globalSetting.serverAddress + this.path;
+    this.http.post(url, job)
     .subscribe(data => {
       console.log(data);
     },
