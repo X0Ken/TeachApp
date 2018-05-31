@@ -5,6 +5,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { GlobalSettingService } from "../pages/global";
+import { AskPage } from '../pages/ask/ask-write/ask';
+import { AskViewPage } from '../pages/ask/ask-view/ask-view';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -18,6 +20,8 @@ import { OrderDonePage } from '../pages/order/order-done/order-done';
 import { OrderGoingPage } from '../pages/order/order-going/order-going';
 import { OrderListAllPage } from '../pages/order/order-list-all/order-list-all';
 import { OrderNeedConfirmedPage } from '../pages/order/order-need-confirmed/order-need-confirmed';
+import { AnswerListPage } from '../pages/answer/answer-list/answer-list';
+import { AnswerShowPage } from '../pages/answer/answer-show/answer-show';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,6 +30,7 @@ import { SearchPage } from '../pages/common/search/search';
 @NgModule({
   declarations: [
     MyApp,
+    AskPage,
     AboutPage,
     ContactPage,
     HomePage,
@@ -39,7 +44,10 @@ import { SearchPage } from '../pages/common/search/search';
     OrderDonePage,
     OrderGoingPage,
     OrderListAllPage,
-    OrderNeedConfirmedPage
+    OrderNeedConfirmedPage,
+    AskViewPage,
+    AnswerListPage,
+    AnswerShowPage
   ],
   imports: [
     BrowserModule,
@@ -50,6 +58,7 @@ import { SearchPage } from '../pages/common/search/search';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    AskPage,
     AboutPage,
     ContactPage,
     HomePage,
@@ -63,7 +72,10 @@ import { SearchPage } from '../pages/common/search/search';
     OrderDonePage,
     OrderGoingPage,
     OrderListAllPage,
-    OrderNeedConfirmedPage
+    OrderNeedConfirmedPage,
+    AskViewPage,
+    AnswerListPage,
+    AnswerShowPage
   ],
   providers: [
     StatusBar,

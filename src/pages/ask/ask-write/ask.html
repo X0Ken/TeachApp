@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      提问
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <button ion-item no-lines  (click)="showPrompt()">
+    <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+    关键词
+    <ion-note item-end>
+      {{ keywords }}
+      </ion-note>
+  </button>
+  <ion-item>
+    <ion-label color="primary" stacked>问题描述</ion-label>
+    <ion-textarea rows="16                               "></ion-textarea>
+  </ion-item>
+  <button ion-item no-lines>
+    <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+    上传照片或视频
+  </button>
+  <ion-item>
+    <ion-label>设置金额</ion-label>
+    <ion-input type="number" value="" [(ngModel)]="pay"></ion-input>
+    <ion-badge item-end>
+      <button ion-button color="primary" style="height: 1em" (click)="setPay()">
+        查询参考价格
+      </button>
+    </ion-badge>
+  </ion-item>
+  <div padding>
+    <button ion-button color="primary" block (click)="submit()">发布问题</button>
+  </div>
+
+</ion-content>
