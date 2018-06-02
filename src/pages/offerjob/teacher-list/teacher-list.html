@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      About
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+    <ion-list>
+        <ion-item *ngFor="let item of items">
+          <ion-avatar item-start>
+            <img src="assets/imgs/avatar-finn.jpg">
+          </ion-avatar>
+          <h2>{{ item.subject }} - {{ item.method }}</h2>
+          <h3>{{ item.time }}</h3>
+          <p>{{ item.region }} - {{ item.highest_education }} - {{ item.pay }} - {{ item.school }}</p>
+        </ion-item>
+      </ion-list>
+
+</ion-content>

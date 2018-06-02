@@ -3,13 +3,15 @@ import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
 
-import { GlobalSettingService } from '../global';
+import { GlobalSettingService } from '../../global';
+import { TeacherDetailPage } from '../teacher-detail/teacher-detail';
 
 @Component({
-  selector: 'page-find-job',
-  templateUrl: 'findjob.html'
+  selector: 'page-teacher-list',
+  templateUrl: 'teacher-list.html'
 })
-export class FindJobPage {
+export class TeacherListPage {
+
   items: Array<any>;
   path: string = '/jobs';
 
@@ -83,6 +85,10 @@ export class FindJobPage {
           });
           alert.present();
         });
+  }
+
+  showTeacher(teacher){
+    this.navCtrl.push(TeacherDetailPage, {"teacher": teacher});
   }
 
 }

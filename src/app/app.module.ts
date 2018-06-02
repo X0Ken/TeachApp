@@ -23,6 +23,8 @@ import { OrderNeedConfirmedPage } from '../pages/order/order-need-confirmed/orde
 import { AnswerListPage } from '../pages/answer/answer-list/answer-list';
 import { AnswerShowPage } from '../pages/answer/answer-show/answer-show';
 import { TalkPage } from '../pages/talk/talk';
+import { TeacherListPage } from '../pages/offerjob/teacher-list/teacher-list';
+import { TeacherDetailPage } from '../pages/offerjob/teacher-detail/teacher-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -49,7 +51,8 @@ import { SearchPage } from '../pages/common/search/search';
     AskViewPage,
     AnswerListPage,
     AnswerShowPage,
-    TalkPage
+    TalkPage,
+    TeacherListPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import { SearchPage } from '../pages/common/search/search';
     AskViewPage,
     AnswerListPage,
     AnswerShowPage,
-    TalkPage
+    TalkPage,
+    TeacherListPage
   ],
   providers: [
     StatusBar,

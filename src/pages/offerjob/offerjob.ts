@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { SearchPage } from '../common/search/search';
 import { GlobalSettingService } from '../global';
 
+import { TeacherListPage } from '../offerjob/teacher-list/teacher-list';
+
 @Component({
   selector: 'page-offer-job',
   templateUrl: 'offerjob.html'
@@ -61,7 +63,13 @@ export class OfferJobPage {
    }
 
    submit(){
-     var job = {"job":{
+    //  this.submitToServer();
+    this.navCtrl.push(TeacherListPage);
+
+   }
+
+   submitToServer(){
+    var job = {"job":{
       "method": this.method,
       "gender": this.gender,
       "school": this.school,
