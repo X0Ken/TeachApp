@@ -36,6 +36,7 @@ export class AnswerListPage {
   }
 
   itemSelected(item){
+    console.log(item);
     this.navCtrl.push(AnswerShowPage, {"item": item});
   }
 

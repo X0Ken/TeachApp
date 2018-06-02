@@ -22,6 +22,7 @@ import { OrderListAllPage } from '../pages/order/order-list-all/order-list-all';
 import { OrderNeedConfirmedPage } from '../pages/order/order-need-confirmed/order-need-confirmed';
 import { AnswerListPage } from '../pages/answer/answer-list/answer-list';
 import { AnswerShowPage } from '../pages/answer/answer-show/answer-show';
+import { TalkPage } from '../pages/talk/talk';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,7 +48,8 @@ import { SearchPage } from '../pages/common/search/search';
     OrderNeedConfirmedPage,
     AskViewPage,
     AnswerListPage,
-    AnswerShowPage
+    AnswerShowPage,
+    TalkPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ import { SearchPage } from '../pages/common/search/search';
     OrderNeedConfirmedPage,
     AskViewPage,
     AnswerListPage,
-    AnswerShowPage
+    AnswerShowPage,
+    TalkPage
   ],
   providers: [
     StatusBar,
