@@ -9,6 +9,8 @@ import { UserPage } from '../user/user';
 import { AskPage } from '../ask/ask-write/ask';
 import { AnswerListPage } from '../answer/answer-list/answer-list';
 
+import { GlobalSettingService } from '../global';
+
 @Component({
   templateUrl: 'tabs.html'
 })
@@ -20,7 +22,9 @@ export class TabsPage {
   tab4Root = FindJobPage;
   tab5Root = UserPage;
 
-  constructor() {
+  user: object = null;
+
+  constructor(public globalSetting: GlobalSettingService) {
 
   }
 }

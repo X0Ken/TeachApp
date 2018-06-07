@@ -26,10 +26,15 @@ import { TalkPage } from '../pages/talk/talk';
 import { TeacherListPage } from '../pages/offerjob/teacher-list/teacher-list';
 import { TeacherDetailPage } from '../pages/offerjob/teacher-detail/teacher-detail';
 import { SelfInfoPage } from '../pages/findjob/self-info/self-info';
+import { LoginPage } from '../pages/user/login/login';
+import { RegisterPage } from '../pages/user/register/register';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SearchPage } from '../pages/common/search/search';
+
+
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -55,13 +60,16 @@ import { SearchPage } from '../pages/common/search/search';
     TalkPage,
     TeacherListPage,
     TeacherDetailPage,
-    SelfInfoPage
+    SelfInfoPage,
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -87,7 +95,9 @@ import { SearchPage } from '../pages/common/search/search';
     TalkPage,
     TeacherListPage,
     TeacherDetailPage,
-    SelfInfoPage
+    SelfInfoPage,
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
