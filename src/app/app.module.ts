@@ -25,6 +25,7 @@ import { AnswerShowPage } from '../pages/answer/answer-show/answer-show';
 import { TalkPage } from '../pages/talk/talk';
 import { TeacherListPage } from '../pages/offerjob/teacher-list/teacher-list';
 import { TeacherDetailPage } from '../pages/offerjob/teacher-detail/teacher-detail';
+import { SelfInfoPage } from '../pages/findjob/self-info/self-info';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -52,7 +53,9 @@ import { SearchPage } from '../pages/common/search/search';
     AnswerListPage,
     AnswerShowPage,
     TalkPage,
-    TeacherListPage
+    TeacherListPage,
+    TeacherDetailPage,
+    SelfInfoPage
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,9 @@ import { SearchPage } from '../pages/common/search/search';
     AnswerListPage,
     AnswerShowPage,
     TalkPage,
-    TeacherListPage
+    TeacherListPage,
+    TeacherDetailPage,
+    SelfInfoPage
   ],
   providers: [
     StatusBar,

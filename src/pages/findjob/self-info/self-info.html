@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>我的家教信息</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>授课方式</ion-label>
+      <ion-select [(ngModel)]="method">
+        <ion-option value="网络">网络</ion-option>
+        <ion-option value="上门">上门</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>姓名</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>性别</ion-label>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="男">男</ion-option>
+        <ion-option value="女">女</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>身份证号</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label (click)="goSearchRegion()">选择地址</ion-label>
+      <ion-note item-end>
+        {{ region }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>学历</ion-label>
+      <ion-select [(ngModel)]="highest_education">
+        <ion-option value="本科">本科</ion-option>
+        <ion-option value="硕士">硕士</ion-option>
+        <ion-option value="博士">博士</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label (click)="goSearchSchool()">就读\毕业院校</ion-label>
+      <ion-note item-end>
+        {{ school }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label (click)="goSearchSchool()">专业</ion-label>
+      <ion-note item-end>
+        {{ school }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>教授科目</ion-label>
+      <ion-select [(ngModel)]="subject">
+        <ion-option value="语文">语文</ion-option>
+        <ion-option value="数学">数学</ion-option>
+        <ion-option value="英语">英语</ion-option>
+        <ion-option value="政治">政治</ion-option>
+        <ion-option value="物理">物理</ion-option>
+        <ion-option value="地理">地理</ion-option>
+        <ion-option value="化学">化学</ion-option>
+        <ion-option value="生物">生物</ion-option>
+        <ion-option value="历史">历史</ion-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>薪资要求</ion-label>
+      <ion-select [(ngModel)]="pay">
+        <ion-option value="10-20">10-20</ion-option>
+        <ion-option value="20-30">20-30</ion-option>
+        <ion-option value="30-40">30-40</ion-option>
+        <ion-option value="面谈">面谈</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>授课时间</ion-label>
+      <ion-select [(ngModel)]="time">
+        <ion-option value="上午">上午</ion-option>
+        <ion-option value="下午">下午</ion-option>
+        <ion-option value="晚上">晚上</ion-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label color="primary" stacked>自我评价</ion-label>
+      <ion-textarea rows="16"></ion-textarea>
+    </ion-item>
+
+
+    <ion-item>
+      <button ion-button round full (click)="go_back()">提交</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

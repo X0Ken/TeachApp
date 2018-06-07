@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
 
 import { GlobalSettingService } from '../global';
+import { SelfInfoPage } from './self-info/self-info';
+import { TalkPage } from '../talk/talk';
 
 @Component({
   selector: 'page-find-job',
@@ -83,6 +85,15 @@ export class FindJobPage {
           });
           alert.present();
         });
+  }
+
+  go_edit() {
+    //this.navCtrl.setRoot(SearchPage);
+    this.navCtrl.push(SelfInfoPage);
+  }
+
+  go_talk(){
+    this.navCtrl.push(TalkPage, {"user": '张三'});
   }
 
 }

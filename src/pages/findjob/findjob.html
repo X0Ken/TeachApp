@@ -4,17 +4,36 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content >
+
+
+<ion-content>
+  <ion-item>
+    <ion-label color="primary" stacked>家教基本信息</ion-label>
+    <ion-textarea rows="16"></ion-textarea>
+  </ion-item>
+  <button ion-item no-lines (click)='go_edit()'>
+    <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+    编辑
+  </button>
+
+
+
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-avatar item-start>
-        <img src="assets/imgs/avatar-finn.jpg">
-      </ion-avatar>
-      <h2>{{ item.subject }} - {{ item.method }}</h2>
-      <h3>{{ item.time }}</h3>
-      <p>{{ item.region }} - {{ item.highest_education }} - {{ item.pay }} - {{ item.school }}</p>
-    </ion-item>
+    <ion-list-header>
+      消息列表
+    </ion-list-header>
+    <button ion-item (click)='go_talk()'>
+      <ion-icon name='chatbubbles' item-start style="color: #470a97"></ion-icon>
+      我有一个想法
+    </button>
+    <button ion-item (click)='go_talk()'>
+      <ion-icon name='chatbubbles' item-start style="color: #470a97"></ion-icon>
+      这个问题我可以解决
+    </button>
+    <button ion-item (click)='go_talk()'>
+      <ion-icon name='chatbubbles' item-start style="color: #470a97"></ion-icon>
+      这份问题简单
+    </button>
   </ion-list>
+
 </ion-content>
-
-
