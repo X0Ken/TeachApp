@@ -92,8 +92,8 @@ export class FindJobPage {
     this.navCtrl.push(SelfInfoPage);
   }
 
-  go_talk(){
-    this.navCtrl.push(TalkPage, {"user": '张三'});
+  go_talk() {
+    this.navCtrl.push(TalkPage, { "user": '张三' });
   }
 
 }

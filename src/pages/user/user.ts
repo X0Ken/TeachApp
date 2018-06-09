@@ -7,6 +7,7 @@ import { LoginPage } from './login/login';
 
 import { GlobalSettingService } from '../global';
 import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'page-user',
@@ -14,23 +15,46 @@ import { Storage } from '@ionic/storage';
 })
 export class UserPage {
   user: object = { "username": "fuck" };
+  uri: string = '/token';
 
   constructor(public navCtrl: NavController, public globalSetting: GlobalSettingService,
-    private storage: Storage) {
+    private storage: Storage, public http: HttpClient) {
     this.load_user();
-
   }
 
   load_user() {
-    this.storage.get("username").then(username => {
-      if (username == null) {
+    console.log('GlobalSetting.user');
+    console.log(this.globalSetting.user);
+    if (this.globalSetting.user != null) {
+      this.user = this.globalSetting.user;
+      return;
+    }
+
+    this.storage.get("token_id").then(token_id => {
+      if (token_id == null) {
+        console.log('Go to page LoginPage.');
         this.navCtrl.setRoot(LoginPage);
       }
       else {
-        this.user = {
-          'username': username
-        };
+        var url = this.globalSetting.serverAddress + this.uri;
+        var body = {
+          "auth": {
+            "type": "token",
+            "token_id": "token_id"
+          }
+        }
+        this.http.post(url, body)
+          .subscribe(data => {
+            console.log("Load data from server");
+            console.log(data);
+            this.user = (data as any).token;
+          },
+            error => {
+              console.error("This line is never called ", error);
+            });
+
         this.globalSetting.user = this.user;
+        this.storage.set("token_id", this.user['token_id']);
       }
     });
   }
@@ -40,7 +64,8 @@ export class UserPage {
   }
 
   login_out() {
-    this.storage.remove('username');
+    this.storage.remove('token_id');
+    this.globalSetting.user = null;
     this.navCtrl.setRoot(LoginPage);
   }
 
