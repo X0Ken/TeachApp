@@ -12,7 +12,7 @@ import { TeacherListPage } from '../offerjob/teacher-list/teacher-list';
   templateUrl: 'offerjob.html'
 })
 export class OfferJobPage {
-  path: string = '/jobs';
+  uri: string = '/teacherjobs';
   method: string = '';
   school: string = '';
   region: string = '';
@@ -67,14 +67,13 @@ export class OfferJobPage {
   }
 
   submit() {
-    //  this.submitToServer();
-    this.navCtrl.push(TeacherListPage);
+    this.submitToServer();
 
   }
 
   submitToServer() {
     var job = {
-      "job": {
+      "teacherjob": {
         "method": this.method,
         "gender": this.gender,
         "school": this.school,
@@ -85,10 +84,18 @@ export class OfferJobPage {
         "time": this.time
       }
     }
-    var url = this.globalSetting.serverAddress + this.path;
-    this.http.post(url, job)
+    var token_id = this.globalSetting.user['token_id'];
+    console.log("log  token id");
+    console.log(token_id);
+
+    var url = this.globalSetting.serverAddress + this.uri;
+    this.http.post(url, job, {
+      headers: { "token-id": token_id }
+    })
       .subscribe(data => {
         console.log(data);
+        this.navCtrl.push(TeacherListPage);
+
       },
         error => {
           console.error("This line is never called ", error);
