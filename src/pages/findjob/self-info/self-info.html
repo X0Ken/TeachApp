@@ -16,11 +16,6 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>姓名</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
       <ion-label>性别</ion-label>
       <ion-select [(ngModel)]="gender">
         <ion-option value="男">男</ion-option>
@@ -30,7 +25,7 @@
 
     <ion-item>
       <ion-label>身份证号</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="idcard"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -57,9 +52,9 @@
     </ion-item>
 
     <ion-item>
-      <ion-label (click)="goSearchSchool()">专业</ion-label>
+      <ion-label (click)="goSearchSchoolSubject()">专业</ion-label>
       <ion-note item-end>
-        {{ school }}
+        {{ school_subject }}
       </ion-note>
     </ion-item>
 
@@ -101,7 +96,7 @@
 
     <ion-item>
       <ion-label color="primary" stacked>自我评价</ion-label>
-      <ion-textarea rows="16"></ion-textarea>
+      <ion-textarea rows="16" [(ngModel)]="self_evaluate"></ion-textarea>
     </ion-item>
 
 

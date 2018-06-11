@@ -9,7 +9,7 @@
 <ion-content>
   <ion-item>
     <ion-label color="primary" stacked>家教基本信息</ion-label>
-    <ion-textarea rows="16"></ion-textarea>
+    <ion-textarea rows="11" [(ngModel)]="context" readonly=true></ion-textarea>
   </ion-item>
   <button ion-item no-lines (click)='go_edit()'>
     <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>

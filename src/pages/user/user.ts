@@ -31,16 +31,23 @@ export class UserPage {
     }
 
     this.storage.get("token_id").then(token_id => {
+      // fake
+      token_id = "96da3aee6b6e47b98f08664abfbc599a";
+
+
+
       if (token_id == null) {
         console.log('Go to page LoginPage.');
         this.navCtrl.setRoot(LoginPage);
       }
       else {
+        console.log('Token id.');
+        console.log(token_id);
         var url = this.globalSetting.serverAddress + this.uri;
         var body = {
           "auth": {
             "type": "token",
-            "token_id": "token_id"
+            "token_id": token_id
           }
         }
         this.http.post(url, body)
@@ -48,13 +55,12 @@ export class UserPage {
             console.log("Load data from server");
             console.log(data);
             this.user = (data as any).token;
+            this.globalSetting.user = this.user;
+            this.storage.set("token_id", this.user['token_id']);
           },
             error => {
               console.error("This line is never called ", error);
             });
-
-        this.globalSetting.user = this.user;
-        this.storage.set("token_id", this.user['token_id']);
       }
     });
   }

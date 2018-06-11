@@ -14,14 +14,18 @@ import { TalkPage } from '../talk/talk';
 export class FindJobPage {
   items: Array<any>;
   path: string = '/jobs';
+  uri: string = '/teachers';
+  context: string = '';
 
   constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController,
     public globalSetting: GlobalSettingService) {
     this.initializeItems();
+
   }
 
   ionViewDidEnter() {
     //this.load_data();
+    this.loadTeacherInfo();
   }
 
 
@@ -65,6 +69,29 @@ export class FindJobPage {
       }
     ];
     //this.load_data()
+  }
+
+  loadTeacherInfo() {
+    var url = this.globalSetting.serverAddress + this.uri + "/" + this.globalSetting.user['id'];
+    this.http.get(url)
+      .subscribe(data => {
+        console.log("Get teacher init data from server.");
+        console.log(data);
+        var teacher = data['teacher'];
+        this.context = `授课方式: ${teacher['method']},
+性别: ${teacher['gender']},
+身份证号: ${teacher['idcard']},
+地址: ${teacher['region']},
+学历: ${teacher['highest_education']},
+就读-毕业院校: ${teacher['school']},
+专业: ${teacher['school_subject']},
+教授科目: ${teacher['subject']},
+薪资要求: ${teacher['pay']},
+授课时间: ${teacher['time']}`;
+      },
+        error => {
+          console.error("This line is never called ", error);
+        });
   }
 
 
