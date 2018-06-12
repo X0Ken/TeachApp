@@ -8,7 +8,7 @@ import { TalkPage } from '../../talk/talk'
 })
 export class AnswerShowPage {
 
-  item: string='';
+  item: object=null;
 
   constructor(public navCtrl: NavController, params: NavParams) {
     this.item = params.get("item");

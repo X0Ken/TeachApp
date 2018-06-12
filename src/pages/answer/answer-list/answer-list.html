@@ -10,21 +10,16 @@
 
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
-      {{ item }}
+      {{ item.context }}
     </button>
   </ion-list>
-
-
-
-  
-
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar>
-      <ion-item no-lines>
-          <ion-label>接收问题</ion-label>
-          <ion-toggle checked="false"></ion-toggle>
-        </ion-item>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-toolbar>
+    <ion-item no-lines>
+      <ion-label>接收问题</ion-label>
+      <ion-toggle checked="false"></ion-toggle>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

@@ -7,16 +7,16 @@
 </ion-header>
 
 <ion-content>
-  <button ion-item no-lines  (click)="showPrompt()">
+  <button ion-item no-lines (click)="showPrompt()">
     <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
     关键词
     <ion-note item-end>
       {{ keywords }}
-      </ion-note>
+    </ion-note>
   </button>
   <ion-item>
     <ion-label color="primary" stacked>问题描述</ion-label>
-    <ion-textarea rows="16                               "></ion-textarea>
+    <ion-textarea rows="16" [(ngModel)]="context"></ion-textarea>
   </ion-item>
   <button ion-item no-lines>
     <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>

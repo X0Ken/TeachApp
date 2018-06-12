@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { GlobalSettingService } from '../../global';
 import { HttpClient } from '@angular/common/http';
+import { TalkPage } from '../../talk/talk'
 
 @Component({
   selector: 'page-teacher-detail',
@@ -40,6 +41,10 @@ export class TeacherDetailPage {
         error => {
           console.error("This line is never called ", error);
         });
+  }
+
+  talk() {
+    this.navCtrl.push(TalkPage, { "user": '张三' });
   }
 
 }

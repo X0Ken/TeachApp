@@ -22,47 +22,47 @@ export class TalkPage {
       {
         "user_id": "1",
         "msg": "这是一条消息",
-        "user_pic": "assets/imgs/avatar-finn.jpg"
+        "user_pic": "assets/imgs/user1.jpg"
       },
       {
         "user_id": "2",
         "msg": "这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息。",
-        "user_pic": "assets/imgs/avatar-finn.jpg"
+        "user_pic": "assets/imgs/user2.jpg"
       },
       {
         "user_id": "1",
         "msg": "这是一条消息",
-        "user_pic": "assets/imgs/avatar-finn.jpg"
+        "user_pic": "assets/imgs/user1.jpg"
       },
       {
         "user_id": "1",
         "msg": "这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息，这是一条消息。",
-        "user_pic": "assets/imgs/avatar-finn.jpg"
+        "user_pic": "assets/imgs/user1.jpg"
       },
       {
         "user_id": "2",
         "msg": "这是一条消息",
-        "user_pic": "assets/imgs/avatar-finn.jpg"
+        "user_pic": "assets/imgs/user2.jpg"
       },
       {
         "user_id": "2",
         "msg": "这是一条消息",
-        "user_pic": "assets/imgs/avatar-finn.jpg"
+        "user_pic": "assets/imgs/user2.jpg"
       },
       {
         "user_id": "1",
         "msg": "这是一条消息",
-        "user_pic": "assets/imgs/avatar-finn.jpg"
+        "user_pic": "assets/imgs/user1.jpg"
       },
       {
         "user_id": "2",
         "msg": "这是一条消息",
-        "user_pic": "assets/imgs/avatar-finn.jpg"
+        "user_pic": "assets/imgs/user2.jpg"
       },
       {
         "user_id": "1",
         "msg": "这是一条消息",
-        "user_pic": "assets/imgs/avatar-finn.jpg"
+        "user_pic": "assets/imgs/user1.jpg"
       }
     ];
   }
@@ -76,20 +76,20 @@ export class TalkPage {
     this.items.push({
       "user_id": "1",
       "msg": msg,
-      "user_pic": "assets/imgs/avatar-finn.jpg"
+      "user_pic": "assets/imgs/user1.jpg"
     });
     this.msg = "";
     this.autoScroll();
-    
+
   }
 
   autoScroll() {
     setTimeout(() => {
       this.content.scrollToBottom(300);
     });
-}
+  }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.autoScroll();
   }
 

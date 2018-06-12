@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { AskViewPage } from '../ask-view/ask-view';
+import { HttpClient } from '@angular/common/http';
+import { GlobalSettingService } from '../../global';
 
 @Component({
   selector: 'page-ask',
@@ -10,15 +12,17 @@ import { AskViewPage } from '../ask-view/ask-view';
 })
 export class AskPage {
 
-  pay: number=0;
-  keywords: string="";
-  context: string="";
+  pay: number = 0;
+  keywords: string = "";
+  context: string = "";
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController,
+    public http: HttpClient,
+    public globalSetting: GlobalSettingService) {
 
   }
 
-  setPay(){
+  setPay() {
     this.pay = Math.floor(Math.random() * 100);
   }
 
@@ -39,7 +43,7 @@ export class AskPage {
           handler: data => {
             this.keywords = data.keywords;
             console.log('Saved clicked');
-            
+
             console.log(data);
           }
         }
@@ -48,13 +52,25 @@ export class AskPage {
     prompt.present();
   }
 
-  submit(){
-    var ask = {
-      'pay': this.pay,
-      'context': this.context,
-      'keywords': this.keywords
+  submit() {
+    var body = {
+      "question": {
+        'pay': this.pay.toString(),
+        'context': this.context,
+        'keywords': this.keywords
+      }
     };
-    this.navCtrl.push(AskViewPage, {'ask':ask});
+    var url = this.globalSetting.serverAddress + '/questions';
+    this.http.post(url, body)
+      .subscribe(data => {
+        console.log("Load data from server");
+        console.log(data);
+        var question = data['question'];
+        this.navCtrl.push(AskViewPage, { 'question': question });
+      },
+        error => {
+          console.error("This line is never called ", error);
+        });
   }
 
 }
