@@ -13,7 +13,7 @@ import { TeacherDetailPage } from '../teacher-detail/teacher-detail';
 export class TeacherListPage {
 
   items: Array<any>;
-  path: string = '/jobs';
+  uri: string = '/teachers';
 
   constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController,
     public globalSetting: GlobalSettingService) {
@@ -64,31 +64,25 @@ export class TeacherListPage {
         "create_at": "2018-05-28 23:37:24"
       }
     ];
-    //this.load_data()
+    this.getTeacherList()
   }
 
+  showTeacher(teacher) {
+    this.navCtrl.push(TeacherDetailPage, { "teacher": teacher });
+  }
 
-
-  load_data() {
-    var url = this.globalSetting.serverAddress + this.path;
+  getTeacherList() {
+    var url = this.globalSetting.serverAddress + this.uri;
     this.http.get(url)
       .subscribe(data => {
         console.log(data);
-        this.items = (data as any).jobs;
+        this.items = data['teachers'];
+
       },
         error => {
           console.error("This line is never called ", error);
-          let alert = this.alertCtrl.create({
-            title: 'New Friend!',
-            subTitle: error,
-            buttons: ['OK']
-          });
-          alert.present();
         });
-  }
 
-  showTeacher(teacher){
-    this.navCtrl.push(TeacherDetailPage, {"teacher": teacher});
   }
 
 }
