@@ -9,6 +9,9 @@ import { GlobalSettingService } from '../global';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 
+import { Platform } from 'ionic-angular';
+
+
 @Component({
   selector: 'page-user',
   templateUrl: 'user.html'
@@ -18,7 +21,9 @@ export class UserPage {
   uri: string = '/token';
 
   constructor(public navCtrl: NavController, public globalSetting: GlobalSettingService,
-    private storage: Storage, public http: HttpClient) {
+    private storage: Storage, public http: HttpClient, public plt: Platform) {
+
+    console.log(this.plt.platforms());
     this.load_user();
   }
 

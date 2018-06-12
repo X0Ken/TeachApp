@@ -35,6 +35,7 @@ import { SearchPage } from '../pages/common/search/search';
 
 
 import { IonicStorageModule } from '@ionic/storage';
+import { RestProvider } from '../providers/rest/rest';
 
 @NgModule({
   declarations: [
@@ -102,8 +103,9 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GlobalSettingService
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    GlobalSettingService,
+    RestProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

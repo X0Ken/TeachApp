@@ -82,7 +82,6 @@ export class TeacherListPage {
         error => {
           console.error("This line is never called ", error);
         });
-
   }
 
 }

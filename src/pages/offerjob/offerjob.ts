@@ -100,6 +100,7 @@ export class OfferJobPage {
         error => {
           console.error("This line is never called ", error);
         });
+
   }
 
 }

@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { GlobalSettingService } from '../../global';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'page-teacher-detail',
   templateUrl: 'teacher-detail.html'
 })
 export class TeacherDetailPage {
-  teacher: Object={
+  uri = "/teachers"
+  teacher: Object = {
     "uuid": "2d62e44693fd44b2be4a4220f62239dc",
     "method": "网络",
     "gender": "男",
@@ -19,8 +22,24 @@ export class TeacherDetailPage {
     "create_at": "2018-05-28 23:37:24"
   };
 
-  constructor(public navCtrl: NavController, params: NavParams) {
-    //this.teacher = params.get("teacher");
+  constructor(public navCtrl: NavController, params: NavParams,
+    public globalSetting: GlobalSettingService,
+    public http: HttpClient) {
+    var teacher = params.get("teacher");
+    this.getTeacherDetail(teacher['user_id']);
+  }
+
+  getTeacherDetail(teacher_id) {
+    var url = this.globalSetting.serverAddress + this.uri + "/" + teacher_id;
+    this.http.get(url)
+      .subscribe(data => {
+        console.log(data);
+        this.teacher = data['teacher'];
+
+      },
+        error => {
+          console.error("This line is never called ", error);
+        });
   }
 
 }
