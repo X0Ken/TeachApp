@@ -14,12 +14,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { OfferJobPage } from '../pages/offerjob/offerjob';
 import { FindJobPage } from '../pages/findjob/findjob';
 import { UserPage } from '../pages/user/user';
-import { AllOrderPage } from '../pages/order/allorder/allorder';
-import { OrderTabsPage } from '../pages/order/ordertabs/ordertabs';
-import { OrderDonePage } from '../pages/order/order-done/order-done';
-import { OrderGoingPage } from '../pages/order/order-going/order-going';
-import { OrderListAllPage } from '../pages/order/order-list-all/order-list-all';
-import { OrderNeedConfirmedPage } from '../pages/order/order-need-confirmed/order-need-confirmed';
+import { OrderListPage } from '../pages/order/order-list/order-list';
+import { AllOrderPage } from '../pages/order/order-overview/allorder';
 import { AnswerListPage } from '../pages/answer/answer-list/answer-list';
 import { AnswerShowPage } from '../pages/answer/answer-show/answer-show';
 import { TalkPage } from '../pages/talk/talk';
@@ -50,11 +46,7 @@ import { RestProvider } from '../providers/rest/rest';
     SearchPage,
     UserPage,
     AllOrderPage,
-    OrderTabsPage,
-    OrderDonePage,
-    OrderGoingPage,
-    OrderListAllPage,
-    OrderNeedConfirmedPage,
+    OrderListPage,
     AskViewPage,
     AnswerListPage,
     AnswerShowPage,
@@ -85,11 +77,7 @@ import { RestProvider } from '../providers/rest/rest';
     SearchPage,
     UserPage,
     AllOrderPage,
-    OrderTabsPage,
-    OrderDonePage,
-    OrderGoingPage,
-    OrderListAllPage,
-    OrderNeedConfirmedPage,
+    OrderListPage,
     AskViewPage,
     AnswerListPage,
     AnswerShowPage,

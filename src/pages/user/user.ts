@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 
-import { AllOrderPage } from '../order/allorder/allorder';
+import { AllOrderPage } from '../order/order-overview/allorder';
 import { LoginPage } from './login/login';
 
 import { GlobalSettingService } from '../global';

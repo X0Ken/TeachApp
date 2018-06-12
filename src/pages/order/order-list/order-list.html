@@ -1,0 +1,85 @@
+<ion-header>
+    <ion-navbar no-border-bottom>
+        <ion-title>
+            {{ title }}
+        </ion-title>
+    </ion-navbar>
+
+    <ion-toolbar no-border-top>
+        <ion-segment [(ngModel)]="status">
+            <ion-segment-button value="all">
+                全部
+            </ion-segment-button>
+            <ion-segment-button value="need_confirm">
+                待确认
+            </ion-segment-button>
+            <ion-segment-button value="doing">
+                进行中
+            </ion-segment-button>
+            <ion-segment-button value="done">
+                已完成
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div [ngSwitch]="status">
+        <ion-list *ngSwitchCase="'all'">
+            <button ion-item>
+                所有订单
+            </button>
+            <button ion-item>
+                所有订单
+            </button>
+            <button ion-item>
+                所有订单
+            </button>
+            <button ion-item>
+                所有订单
+            </button>
+        </ion-list>
+        <ion-list *ngSwitchCase="'need_confirm'">
+            <button ion-item>
+                需要确认的订单
+            </button>
+            <button ion-item>
+                需要确认的订单
+            </button>
+            <button ion-item>
+                需要确认的订单
+            </button>
+            <button ion-item>
+                需要确认的订单
+            </button>
+        </ion-list>
+        <ion-list *ngSwitchCase="'doing'">
+            <button ion-item>
+                进行中的订单
+            </button>
+            <button ion-item>
+                进行中的订单
+            </button>
+            <button ion-item>
+                进行中的订单
+            </button>
+            <button ion-item>
+                进行中的订单
+            </button>
+        </ion-list>
+        <ion-list *ngSwitchCase="'done'">
+            <button ion-item>
+                完成的订单
+            </button>
+            <button ion-item>
+                完成的订单
+            </button>
+            <button ion-item>
+                完成的订单
+            </button>
+            <button ion-item>
+                完成的订单
+            </button>
+        </ion-list>
+    </div>
+</ion-content>
