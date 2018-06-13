@@ -48,14 +48,12 @@ export class TeacherDetailPage {
   }
 
   showEvaluate() {
-    const modal = this.modalCtrl.create(EvaluatePage);
-    modal.present();
+    this.navCtrl.push(EvaluatePage);
   }
   showDetail() {
-    const modal = this.modalCtrl.create(TeacherDetailInfoPage, {
+    this.navCtrl.push(TeacherDetailInfoPage, {
       "teacher": this.teacher
     });
-    modal.present();
   }
 
   talk() {
