@@ -17,6 +17,15 @@ export class CreateQuestionOrderPage {
     this.navCtrl.pop();
   }
 
+  acceptOrder() {
+    this.showToast('middle', "您已确认支付订单");
+    this.goBack();
+  }
+  rejectOrder() {
+    this.showToast('middle', "您已拒绝支付订单");
+    this.goBack();
+  }
+
   showToast(position: string, msg: string) {
     let toast = this.toastCtrl.create({
       message: msg,
