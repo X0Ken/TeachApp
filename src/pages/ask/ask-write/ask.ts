@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { AskViewPage } from '../ask-view/ask-view';
@@ -18,8 +18,15 @@ export class AskPage {
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController,
     public http: HttpClient,
-    public globalSetting: GlobalSettingService) {
+    public globalSetting: GlobalSettingService,
+    params: NavParams) {
+    var question = params.get("question");
+    if (question != null) {
+      this.pay = question['pay'];
+      this.keywords = question['keywords'];
+      this.context = question['context'];
 
+    }
   }
 
   setPay() {
@@ -39,7 +46,7 @@ export class AskPage {
       ],
       buttons: [
         {
-          text: '保存',
+          text: '确认',
           handler: data => {
             this.keywords = data.keywords;
             console.log('Saved clicked');
@@ -66,7 +73,7 @@ export class AskPage {
         console.log("Load data from server");
         console.log(data);
         var question = data['question'];
-        this.navCtrl.push(AskViewPage, { 'question': question });
+        this.navCtrl.setRoot(AskViewPage, { 'question': question });
       },
         error => {
           console.error("This line is never called ", error);

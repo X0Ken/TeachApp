@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { CreateOrderPage } from '../order/create-order/create-order';
+
 @Component({
   selector: 'page-talk',
   templateUrl: 'talk.html'
@@ -91,6 +93,10 @@ export class TalkPage {
 
   ionViewDidEnter() {
     this.autoScroll();
+  }
+
+  goCreateOrder() {
+    this.navCtrl.push(CreateOrderPage);
   }
 
 }

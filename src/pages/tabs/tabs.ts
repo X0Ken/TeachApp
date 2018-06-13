@@ -51,7 +51,7 @@ export class TabsPage {
 
     this.storage.get("token_id").then(token_id => {
       // fake
-      token_id = "96da3aee6b6e47b98f08664abfbc599a";
+      //token_id = "96da3aee6b6e47b98f08664abfbc599a";
 
 
 

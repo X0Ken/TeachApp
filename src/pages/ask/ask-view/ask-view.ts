@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { TalkPage } from '../../talk/talk'
+import { AskPage } from '../ask-write/ask';
 
 @Component({
   selector: 'page-ask-view',
@@ -16,6 +17,10 @@ export class AskViewPage {
 
   talk() {
     this.navCtrl.push(TalkPage, { "user": '张三' });
+  }
+
+  goEdit() {
+    this.navCtrl.setRoot(AskPage, { 'question': this.question });
   }
 
 }

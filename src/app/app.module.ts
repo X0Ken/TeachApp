@@ -24,6 +24,7 @@ import { TeacherDetailPage } from '../pages/offerjob/teacher-detail/teacher-deta
 import { SelfInfoPage } from '../pages/findjob/self-info/self-info';
 import { LoginPage } from '../pages/user/login/login';
 import { RegisterPage } from '../pages/user/register/register';
+import { CreateOrderPage } from '../pages/order/create-order/create-order';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -55,7 +56,8 @@ import { RestProvider } from '../providers/rest/rest';
     TeacherDetailPage,
     SelfInfoPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    CreateOrderPage
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,8 @@ import { RestProvider } from '../providers/rest/rest';
     TeacherDetailPage,
     SelfInfoPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    CreateOrderPage
   ],
   providers: [
     StatusBar,

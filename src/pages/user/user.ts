@@ -12,12 +12,13 @@ import { HttpClient } from '@angular/common/http';
 import { Platform } from 'ionic-angular';
 
 
+
 @Component({
   selector: 'page-user',
   templateUrl: 'user.html'
 })
 export class UserPage {
-  user: object = { "username": "fuck" };
+  user: object = { "username": "userfortest" };
   uri: string = '/token';
 
   constructor(public navCtrl: NavController, public globalSetting: GlobalSettingService,
@@ -37,13 +38,12 @@ export class UserPage {
 
     this.storage.get("token_id").then(token_id => {
       // fake
-      token_id = "96da3aee6b6e47b98f08664abfbc599a";
+      //token_id = "96da3aee6b6e47b98f08664abfbc599a";
 
 
 
       if (token_id == null) {
-        console.log('Go to page LoginPage.');
-        this.navCtrl.setRoot(LoginPage);
+        this.login_out();
       }
       else {
         console.log('Token id.');
@@ -64,7 +64,8 @@ export class UserPage {
             this.storage.set("token_id", this.user['token_id']);
           },
             error => {
-              console.error("This line is never called ", error);
+              console.error(error);
+              this.login_out();
             });
       }
     });
@@ -75,6 +76,7 @@ export class UserPage {
   }
 
   login_out() {
+    console.log('Go to page LoginPage.');
     this.storage.remove('token_id');
     this.globalSetting.user = null;
     this.navCtrl.setRoot(LoginPage);
