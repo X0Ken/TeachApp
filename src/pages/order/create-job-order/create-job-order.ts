@@ -3,10 +3,10 @@ import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-create-order',
-  templateUrl: 'create-order.html'
+  selector: 'page-create-job-order',
+  templateUrl: 'create-job-order.html'
 })
-export class CreateOrderPage {
+export class CreateJobOrderPage {
   unit: string = "小时";
   unit_price: number = 20;
   unit_num: number = 1;

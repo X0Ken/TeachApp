@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { CreateOrderPage } from '../order/create-order/create-order';
+import { CreateJobOrderPage } from '../order/create-job-order/create-job-order';
+import { CreateQuestionOrderPage } from '../order/create-question-order/create-question-order';
 
 @Component({
   selector: 'page-talk',
@@ -102,7 +103,13 @@ export class TalkPage {
   }
 
   goCreateOrder() {
-    this.navCtrl.push(CreateOrderPage);
+    if (this.talk_type == 'job') {
+      this.navCtrl.push(CreateJobOrderPage);
+    } else if (this.talk_type == 'question') {
+      this.navCtrl.push(CreateQuestionOrderPage);
+    } else {
+      console.log("talk type error", this.talk_type);
+    }
   }
 
 }

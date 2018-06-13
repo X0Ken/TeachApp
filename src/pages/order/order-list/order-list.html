@@ -26,59 +26,24 @@
 <ion-content>
     <div [ngSwitch]="status">
         <ion-list *ngSwitchCase="'all'">
-            <button ion-item>
-                所有订单
+            <button ion-item *ngFor="let item of items">
+                {{ item.title }}
             </button>
-            <button ion-item>
-                所有订单
-            </button>
-            <button ion-item>
-                所有订单
-            </button>
-            <button ion-item>
-                所有订单
-            </button>
+
         </ion-list>
         <ion-list *ngSwitchCase="'need_confirm'">
-            <button ion-item>
-                需要确认的订单
-            </button>
-            <button ion-item>
-                需要确认的订单
-            </button>
-            <button ion-item>
-                需要确认的订单
-            </button>
-            <button ion-item>
-                需要确认的订单
+            <button ion-item *ngFor="let item of item_filter('wait')">
+                {{ item.title }}
             </button>
         </ion-list>
         <ion-list *ngSwitchCase="'doing'">
-            <button ion-item>
-                进行中的订单
-            </button>
-            <button ion-item>
-                进行中的订单
-            </button>
-            <button ion-item>
-                进行中的订单
-            </button>
-            <button ion-item>
-                进行中的订单
+            <button ion-item *ngFor="let item of item_filter('going')">
+                {{ item.title }}
             </button>
         </ion-list>
         <ion-list *ngSwitchCase="'done'">
-            <button ion-item>
-                完成的订单
-            </button>
-            <button ion-item>
-                完成的订单
-            </button>
-            <button ion-item>
-                完成的订单
-            </button>
-            <button ion-item>
-                完成的订单
+            <button ion-item *ngFor="let item of item_filter('done')">
+                {{ item.title }}
             </button>
         </ion-list>
     </div>
