@@ -16,7 +16,10 @@ export class AskViewPage {
   }
 
   talk() {
-    this.navCtrl.push(TalkPage, { "user": '张三' });
+    this.navCtrl.push(TalkPage, {
+      "user": '张三',
+      "talk_type": "question"
+    });
   }
 
   goEdit() {

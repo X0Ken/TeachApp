@@ -16,13 +16,19 @@ export class AllOrderPage {
   }
 
   offerJobSelected() {
-    this.navCtrl.push(OrderListPage, { "title": "找家教订单" });
+    this.navCtrl.push(OrderListPage, {
+      "title": "找家教订单",
+      "order_type": 'findTeacher'
+    });
   }
   findJobSelected() {
     this.navCtrl.push(OrderListPage, { "title": "当家教订单" });
   }
   askSelected() {
-    this.navCtrl.push(OrderListPage, { "title": "提问订单" });
+    this.navCtrl.push(OrderListPage, {
+      "title": "提问订单",
+      "order_type": 'question'
+    });
   }
   answerSelected() {
     this.navCtrl.push(OrderListPage, { "title": "回答订单" });

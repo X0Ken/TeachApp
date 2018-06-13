@@ -8,14 +8,17 @@ import { TalkPage } from '../../talk/talk'
 })
 export class AnswerShowPage {
 
-  item: object=null;
+  item: object = null;
 
   constructor(public navCtrl: NavController, params: NavParams) {
     this.item = params.get("item");
   }
 
-  talk(){
-    this.navCtrl.push(TalkPage, {"user": '张三'});
+  talk() {
+    this.navCtrl.push(TalkPage, {
+      "user": '张三',
+      "talk_type": "question"
+    });
   }
 
 }

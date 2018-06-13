@@ -52,12 +52,13 @@
       <ion-input type="number" [(ngModel)]="price" readonly="true" class="textBox"></ion-input>
     </ion-item>
 
-    <ion-item no-lines>
-      <button ion-button round full (click)="payForOrder()">支付订单</button>
-    </ion-item>
-    <ion-item no-lines>
-      <button ion-button round full (click)="sendOrder()">发送订单</button>
-    </ion-item>
+
+    <div class="btn_box">
+      <button ion-button round block (click)="payForOrder()">支付订单</button>
+
+      <button ion-button round block (click)="sendOrder()">发送订单</button>
+    </div>
+
   </ion-list>
 
 </ion-content>

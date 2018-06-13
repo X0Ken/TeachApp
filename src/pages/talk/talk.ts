@@ -12,10 +12,16 @@ export class TalkPage {
   user_id: string = '1';
   items: any[];
   msg: string = '';
+  talk_type: string = "question";
+
+
   @ViewChild('content') content: any;
 
   constructor(public navCtrl: NavController, params: NavParams) {
     this.user = params.get("user");
+    this.talk_type = params.get("talk_type");
+    console.log("talk_type", this.talk_type);
+
     this.initializeItems();
   }
 
