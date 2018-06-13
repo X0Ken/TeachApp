@@ -10,7 +10,7 @@ export class OrderListPage {
 
     title: string = '';
     status: string = "all";
-    item_title2: string = "带确认";
+    item_title2: string = "待确认";
     order_type: string = "findTeacher";
 
     items: object[];

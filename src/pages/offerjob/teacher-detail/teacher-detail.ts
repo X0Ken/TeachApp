@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { GlobalSettingService } from '../../global';
 import { HttpClient } from '@angular/common/http';
 import { TalkPage } from '../../talk/talk'
+import { EvaluatePage } from '../evaluate/evaluate'
+import { TeacherDetailInfoPage } from '../teacher-detail-info/teacher-detail-info'
 
 @Component({
   selector: 'page-teacher-detail',
@@ -25,6 +28,7 @@ export class TeacherDetailPage {
 
   constructor(public navCtrl: NavController, params: NavParams,
     public globalSetting: GlobalSettingService,
+    public modalCtrl: ModalController,
     public http: HttpClient) {
     var teacher = params.get("teacher");
     this.getTeacherDetail(teacher['user_id']);
@@ -41,6 +45,17 @@ export class TeacherDetailPage {
         error => {
           console.error("This line is never called ", error);
         });
+  }
+
+  showEvaluate() {
+    const modal = this.modalCtrl.create(EvaluatePage);
+    modal.present();
+  }
+  showDetail() {
+    const modal = this.modalCtrl.create(TeacherDetailInfoPage, {
+      "teacher": this.teacher
+    });
+    modal.present();
   }
 
   talk() {

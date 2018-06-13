@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      家教详情
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>授课方式</ion-label>
+      <ion-note item-end>
+        {{ teacher.method }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>性别</ion-label>
+
+      <ion-note item-end>
+        {{ teacher.gender }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>身份证号</ion-label>
+      <ion-note item-end>
+        {{ teacher.idcard }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>选择地址</ion-label>
+      <ion-note item-end>
+        {{ teacher.region }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>学历</ion-label>
+      <ion-note item-end>
+        {{ teacher.highest_education }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>就读\毕业院校</ion-label>
+      <ion-note item-end>
+        {{ teacher.school }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>专业</ion-label>
+      <ion-note item-end>
+        {{ teacher.school_subject }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>教授科目</ion-label>
+      <ion-note item-end>
+        {{ teacher.subject }}
+      </ion-note>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>薪资要求</ion-label>
+      <ion-note item-end>
+        {{ teacher.pay }}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>授课时间</ion-label>
+      <ion-note item-end>
+        {{ teacher.time }}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

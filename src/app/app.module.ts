@@ -26,6 +26,8 @@ import { LoginPage } from '../pages/user/login/login';
 import { RegisterPage } from '../pages/user/register/register';
 import { CreateJobOrderPage } from '../pages/order/create-job-order/create-job-order';
 import { CreateQuestionOrderPage } from '../pages/order/create-question-order/create-question-order';
+import { EvaluatePage } from '../pages/offerjob/evaluate/evaluate';
+import { TeacherDetailInfoPage } from '../pages/offerjob/teacher-detail-info/teacher-detail-info';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -59,7 +61,9 @@ import { RestProvider } from '../providers/rest/rest';
     LoginPage,
     RegisterPage,
     CreateJobOrderPage,
-    CreateQuestionOrderPage
+    CreateQuestionOrderPage,
+    EvaluatePage,
+    TeacherDetailInfoPage
 
   ],
   imports: [
@@ -93,7 +97,9 @@ import { RestProvider } from '../providers/rest/rest';
     LoginPage,
     RegisterPage,
     CreateJobOrderPage,
-    CreateQuestionOrderPage
+    CreateQuestionOrderPage,
+    EvaluatePage,
+    TeacherDetailInfoPage
   ],
   providers: [
     StatusBar,

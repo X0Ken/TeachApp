@@ -19,15 +19,15 @@
     </p>
   </ion-card-content>
 
-  <ion-item ion-item no-lines>
+  <button ion-item ion-item no-lines (click)="showDetail()">
     <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
     查看家教信息
-  </ion-item>
+  </button>
 
-  <ion-item no-lines>
+  <button ion-item no-lines (click)="showEvaluate()">
     <ion-icon name='basket' item-start style="color: #c22c06"></ion-icon>
     查看评价
-  </ion-item>
+  </button>
 
   <ion-item no-lines>
     <button ion-button color="secondary" round small item-left (click)="talk()">联系他</button>
