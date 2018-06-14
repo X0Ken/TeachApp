@@ -28,13 +28,13 @@
     <!-- <ion-item> -->
     <ion-grid class="order-item">
       <ion-row>
-        <ion-col col-9>
+        <ion-col col-8>
           <ion-label class="grid-left">课时选择</ion-label>
         </ion-col>
         <ion-col col-1>
           <ion-icon name="md-add" (click)="inc_num($event)" class="grid-ion"></ion-icon>
         </ion-col>
-        <ion-col col-1>
+        <ion-col col-2>
           <ion-input type="number" [(ngModel)]="unit_num" (ionChange)="calc_price($event)"></ion-input>
         </ion-col>
         <ion-col col-1>
