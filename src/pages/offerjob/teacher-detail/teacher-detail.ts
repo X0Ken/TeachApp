@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { TalkPage } from '../../talk/talk'
 import { EvaluatePage } from '../evaluate/evaluate'
 import { TeacherDetailInfoPage } from '../teacher-detail-info/teacher-detail-info'
+import { RestProvider } from '../../../providers/rest/rest';
 
 @Component({
   selector: 'page-teacher-detail',
@@ -29,22 +30,18 @@ export class TeacherDetailPage {
   constructor(public navCtrl: NavController, params: NavParams,
     public globalSetting: GlobalSettingService,
     public modalCtrl: ModalController,
+    private rest: RestProvider,
     public http: HttpClient) {
     var teacher = params.get("teacher");
     this.getTeacherDetail(teacher['user_id']);
   }
 
   getTeacherDetail(teacher_id) {
-    var url = this.globalSetting.serverAddress + this.uri + "/" + teacher_id;
-    this.http.get(url)
-      .subscribe(data => {
-        console.log(data);
-        this.teacher = data['teacher'];
-
-      },
-        error => {
-          console.error("This line is never called ", error);
-        });
+    this.rest.load_teacher_info(teacher_id).then(value => {
+      this.teacher = value;
+    }, error => {
+      console.error("This line is never called ", error);
+    });
   }
 
   showEvaluate() {

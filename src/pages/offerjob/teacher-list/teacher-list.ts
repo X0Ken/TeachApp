@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 
 import { GlobalSettingService } from '../../global';
 import { TeacherDetailPage } from '../teacher-detail/teacher-detail';
+import { RestProvider } from '../../../providers/rest/rest';
 
 @Component({
   selector: 'page-teacher-list',
@@ -13,9 +14,10 @@ import { TeacherDetailPage } from '../teacher-detail/teacher-detail';
 export class TeacherListPage {
 
   items: Array<any>;
-  uri: string = '/teachers';
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController,
+  constructor(public navCtrl: NavController, public http: HttpClient,
+    public alertCtrl: AlertController,
+    private rest: RestProvider,
     public globalSetting: GlobalSettingService) {
     this.initializeItems();
   }
@@ -72,16 +74,10 @@ export class TeacherListPage {
   }
 
   getTeacherList() {
-    var url = this.globalSetting.serverAddress + this.uri;
-    this.http.get(url)
-      .subscribe(data => {
-        console.log(data);
-        this.items = data['teachers'];
-
-      },
-        error => {
-          console.error("This line is never called ", error);
-        });
+    this.rest.load_teachers().then((value) => {
+      this.items = value;
+    }, error => {
+      console.log(error);
+    })
   }
-
 }

@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 import { AskViewPage } from '../ask-view/ask-view';
 import { HttpClient } from '@angular/common/http';
 import { GlobalSettingService } from '../../global';
+import { RestProvider } from '../../../providers/rest/rest';
 
 @Component({
   selector: 'page-ask',
@@ -14,17 +15,19 @@ export class AskPage {
 
   pay: number = 0;
   keywords: string = "";
-  context: string = "";
+  content: string = "";
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,
+  constructor(public navCtrl: NavController,
+    public alertCtrl: AlertController,
     public http: HttpClient,
+    private rest: RestProvider,
     public globalSetting: GlobalSettingService,
     params: NavParams) {
     var question = params.get("question");
     if (question != null) {
       this.pay = question['pay'];
       this.keywords = question['keywords'];
-      this.context = question['context'];
+      this.content = question['content'];
 
     }
   }
@@ -61,23 +64,15 @@ export class AskPage {
 
   submit() {
     var body = {
-      "question": {
-        'pay': this.pay.toString(),
-        'context': this.context,
-        'keywords': this.keywords
-      }
+      'pay': this.pay.toString(),
+      'content': this.content,
+      'keywords': this.keywords
     };
-    var url = this.globalSetting.serverAddress + '/questions';
-    this.http.post(url, body)
-      .subscribe(data => {
-        console.log("Load data from server");
-        console.log(data);
-        var question = data['question'];
-        this.navCtrl.setRoot(AskViewPage, { 'question': question });
-      },
-        error => {
-          console.error("This line is never called ", error);
-        });
+    this.rest.put_question(body).then(question => {
+      this.navCtrl.setRoot(AskViewPage, { 'question': question });
+    }, error => {
+      console.error("This line is never called ", error);
+    })
   }
 
 }

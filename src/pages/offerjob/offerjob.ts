@@ -6,6 +6,7 @@ import { SearchPage } from '../common/search/search';
 import { GlobalSettingService } from '../global';
 
 import { TeacherListPage } from '../offerjob/teacher-list/teacher-list';
+import { RestProvider } from '../../providers/rest/rest';
 
 @Component({
   selector: 'page-offer-job',
@@ -22,7 +23,9 @@ export class OfferJobPage {
   subject: string = '';
   time: string = '';
 
-  constructor(public navCtrl: NavController, public http: HttpClient,
+  constructor(public navCtrl: NavController,
+    private rest: RestProvider,
+    public http: HttpClient,
     public globalSetting: GlobalSettingService) {
 
   }
@@ -84,23 +87,11 @@ export class OfferJobPage {
         "time": this.time
       }
     }
-    var token_id = this.globalSetting.user['token_id'];
-    console.log("log  token id");
-    console.log(token_id);
-
-    var url = this.globalSetting.serverAddress + this.uri;
-    this.http.post(url, job, {
-      headers: { "token-id": token_id }
+    this.rest.put_teacher_job(job).then(value => {
+      this.navCtrl.push(TeacherListPage);
+    }, error => {
+      console.error("This line is never called ", error);
     })
-      .subscribe(data => {
-        console.log(data);
-        this.navCtrl.push(TeacherListPage);
-
-      },
-        error => {
-          console.error("This line is never called ", error);
-        });
-
   }
 
 }

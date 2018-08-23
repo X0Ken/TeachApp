@@ -4,6 +4,7 @@ import { GlobalSettingService } from '../../global';
 import { HttpClient } from '@angular/common/http';
 
 import { SearchPage } from '../../common/search/search';
+import { RestProvider } from '../../../providers/rest/rest';
 
 @Component({
   selector: 'page-self-info',
@@ -25,7 +26,9 @@ export class SelfInfoPage {
   uri = "/teachers"
 
 
-  constructor(public navCtrl: NavController, public globalSetting: GlobalSettingService,
+  constructor(public navCtrl: NavController,
+    public globalSetting: GlobalSettingService,
+    private rest: RestProvider,
     public http: HttpClient) {
     this.initializeItems();
 
@@ -35,28 +38,23 @@ export class SelfInfoPage {
     this.getTeacherInfo();
   }
 
-  getTeacherInfo() {
-    var url = this.globalSetting.serverAddress + this.uri + "/" + this.globalSetting.user['id'];
-    this.http.get(url)
-      .subscribe(data => {
-        console.log("Get teacher init data from server.");
-        console.log(data);
-        var teacher = data['teacher'];
-        this.region = teacher['region'];
-        this.school = teacher['school'];
-        this.school_subject = teacher['school_subject'];
-        this.method = teacher['method'];
-        this.gender = teacher['gender'];
-        this.idcard = teacher['idcard'];
-        this.highest_education = teacher['highest_education'];
-        this.subject = teacher['subject'];
-        this.pay = teacher['pay'];
-        this.time = teacher['time'];
-        this.self_evaluate = teacher['self_evaluate'];
-      },
-        error => {
-          console.error("This line is never called ", error);
-        });
+  async getTeacherInfo() {
+    var user = await this.rest.try_login()
+    this.rest.load_teacher_info(user['id']).then(teacher => {
+      this.region = teacher['region'];
+      this.school = teacher['school'];
+      this.school_subject = teacher['school_subject'];
+      this.method = teacher['method'];
+      this.gender = teacher['gender'];
+      this.idcard = teacher['idcard'];
+      this.highest_education = teacher['highest_education'];
+      this.subject = teacher['subject'];
+      this.pay = teacher['pay'];
+      this.time = teacher['time'];
+      this.self_evaluate = teacher['self_evaluate'];
+    }, error => {
+      console.error("This line is never called ", error);
+    });
   }
 
   goSearchSchool() {
@@ -132,40 +130,26 @@ export class SelfInfoPage {
       return;
     }
 
-    var body = {
-      "teacher": {
-        region: this.region,
-        school: this.school,
-        school_subject: this.school_subject,
-        method: this.method,
-        gender: this.gender,
-        idcard: this.idcard,
-        highest_education: this.highest_education,
-        subject: this.subject,
-        pay: this.pay,
-        time: this.time,
-        self_evaluate: this.self_evaluate
-      }
+    var teacher = {
+      region: this.region,
+      school: this.school,
+      school_subject: this.school_subject,
+      method: this.method,
+      gender: this.gender,
+      idcard: this.idcard,
+      highest_education: this.highest_education,
+      subject: this.subject,
+      pay: this.pay,
+      time: this.time,
+      self_evaluate: this.self_evaluate
     };
-    var token_id = this.globalSetting.user['token_id'];
-    console.log("log  token id");
-    console.log(token_id);
 
-    console.log("post teacher data to server.");
-    var url = this.globalSetting.serverAddress + this.uri;
-    this.http.post(url, body, {
-      headers: { "token-id": token_id }
-    })
-      .subscribe(data => {
-        console.log("Get teacher data from server.");
-        console.log(data);
-        this.globalSetting.teacher = data['teacher'];
+    this.rest.update_teacher_info(teacher).then(value => {
+      this.navCtrl.pop();
+    }, error => {
+      console.log(error);
+    });
 
-        this.navCtrl.pop();
-      },
-        error => {
-          console.error("This line is never called ", error);
-        });
   }
 
   go_back() {

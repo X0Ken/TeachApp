@@ -5,6 +5,9 @@ import { AnswerShowPage } from '../answer-show/answer-show'
 import { HttpClient } from '@angular/common/http';
 import { GlobalSettingService } from '../../global';
 
+import { RestProvider } from '../../../providers/rest/rest';
+
+
 @Component({
   selector: 'page-answer-list',
   templateUrl: 'answer-list.html'
@@ -13,6 +16,7 @@ export class AnswerListPage {
   items: object[];
 
   constructor(public navCtrl: NavController,
+    private rest: RestProvider,
     public http: HttpClient,
     public globalSetting: GlobalSettingService) {
     this.initializeItems();
@@ -28,16 +32,11 @@ export class AnswerListPage {
   }
 
   loadQuestion() {
-    var url = this.globalSetting.serverAddress + '/questions';
-    this.http.get(url)
-      .subscribe(data => {
-        console.log("Get data from server.");
-        console.log(data);
-        this.items = data['questions'];
-      },
-        error => {
-          console.error("This line is never called ", error);
-        });
+    this.rest.load_questions().then((items) => {
+      this.items = items;
+    }, error => {
+      console.error("This line is never called ", error);
+    })
   }
 
 }
