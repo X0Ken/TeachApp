@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { AnswerShowPage } from '../answer-show/answer-show'
-import { HttpClient } from '@angular/common/http';
-import { GlobalSettingService } from '../../global';
 
 import { RestProvider } from '../../../providers/rest/rest';
 
@@ -16,9 +14,7 @@ export class AnswerListPage {
   items: object[];
 
   constructor(public navCtrl: NavController,
-    private rest: RestProvider,
-    public http: HttpClient,
-    public globalSetting: GlobalSettingService) {
+    private rest: RestProvider) {
     this.initializeItems();
   }
 

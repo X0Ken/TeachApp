@@ -1,28 +1,28 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      张三
+      <div *ngIf="receiver!=null">
+        {{ receiver.username }}
+      </div>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content #content>
+<ion-content #content_view>
 
-  <ion-list>
-
+  <ion-list *ngIf="receiver && me">
 
     <ion-item no-lines text-wrap *ngFor="let item of items">
-      <div abc></div>
 
-      <ion-avatar item-start *ngIf="item.user_id != user_id">
-        <img src="{{ item.user_pic }}">
+      <ion-avatar item-start *ngIf="item.sender != me.id">
+        <img src="{{ receiver.pic }}">
       </ion-avatar>
-      <p item-left *ngIf="item.user_id != user_id">{{ item.msg }}</p>
+      <p item-left *ngIf="item.sender != me.id">{{ item.content }}</p>
 
 
-      <p item-right *ngIf="item.user_id == user_id">{{ item.msg }}</p>
-      <ion-avatar item-end *ngIf="item.user_id == user_id">
-        <img src="{{ item.user_pic }}">
+      <p item-right *ngIf="item.sender == me.id">{{ item.content }}</p>
+      <ion-avatar item-end *ngIf="item.sender == me.id">
+        <img src="{{ me.pic }}">
       </ion-avatar>
 
     </ion-item>
@@ -34,7 +34,7 @@
   <ion-toolbar>
 
     <ion-item>
-      <ion-input type="text" value="" [(ngModel)]="msg"></ion-input>
+      <ion-input type="text" value="" [(ngModel)]="content"></ion-input>
       <button item-end ion-button (click)="pushMessage()">
         <ion-icon name="md-add"></ion-icon>
       </button>

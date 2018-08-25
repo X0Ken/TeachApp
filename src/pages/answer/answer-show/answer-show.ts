@@ -16,7 +16,7 @@ export class AnswerShowPage {
 
   talk() {
     this.navCtrl.push(TalkPage, {
-      "user": '张三',
+      "receiver_id": this.item['asker'],
       "talk_type": "question"
     });
   }

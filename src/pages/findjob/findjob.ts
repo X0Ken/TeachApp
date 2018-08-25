@@ -55,7 +55,7 @@ export class FindJobPage {
 
   go_talk() {
     this.navCtrl.push(TalkPage, {
-      "user": '张三',
+      "receiver_id": 2,
       "talk_type": "job"
     });
   }

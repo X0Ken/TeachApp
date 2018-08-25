@@ -17,7 +17,7 @@ export class AskViewPage {
 
   talk() {
     this.navCtrl.push(TalkPage, {
-      "user": '张三',
+      "receiver_id": 2,
       "talk_type": "question"
     });
   }

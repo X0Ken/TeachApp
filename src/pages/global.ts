@@ -5,6 +5,6 @@ export class GlobalSettingService {
   public user: object = null;
 
   constructor() {
-    console.log('Hello RestProvider Provider');
+    console.log('Hello GlobalSettingService Provider');
   }
 }

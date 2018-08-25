@@ -23,7 +23,6 @@ export class TabsPage {
   tab4Root = FindJobPage;
   tab5Root = UserPage;
 
-  user: object = null;
   login: boolean = false;
 
   constructor(public navCtrl: NavController,

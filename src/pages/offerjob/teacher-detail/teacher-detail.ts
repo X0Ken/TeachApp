@@ -55,7 +55,7 @@ export class TeacherDetailPage {
 
   talk() {
     this.navCtrl.push(TalkPage, {
-      "user": '张三',
+      "receiver_id": this.teacher['id'],
       "talk_type": "job"
     });
   }

@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { GlobalSettingService } from '../../pages/global'
 
 import { Events } from 'ionic-angular';
+import { User } from '../../pages/models';
 
 /*
   Generated class for the RestProvider provider.
@@ -26,55 +27,49 @@ export class RestProvider {
 
   check_login() {
     console.log('GlobalSetting.user:', this.globalSetting.user);
-    if (this.globalSetting.user != null) {
-      return;
-    }
     return this.globalSetting.user;
   }
 
   login_by_token() {
-    var promise = new Promise((resolve, reject) => {
-      this.storage.get("token_id").then(token_id => {
-        if (token_id == null) {
-          reject("Token id not found!");
-        }
-        else {
-          console.log('Token id.', token_id);
-          var url = this.serverAddress + "/api/token";
-          var body = {
-            "auth": {
-              "type": "token",
-              "token_id": token_id
-            }
+    var promise = new Promise(async (resolve, reject) => {
+      let token_id = await this.get_token_id();
+      if (token_id == null) {
+        reject("Token id not found!");
+      }
+      else {
+        console.log('Token id.', token_id);
+        var url = this.serverAddress + "/api/token";
+        var body = {
+          "auth": {
+            "type": "token",
+            "token_id": token_id
           }
-          this.http.post(url, body).subscribe(data => {
-            console.log("Load data from server: ", data);
-            var user = data['token'];
-            this.globalSetting.user = user;
-            this.storage.set("token_id", user['token_id']);
-            resolve(user);
-          }, error => {
-            console.error("This line is never called ", error);
-            reject(error);
-          });
         }
-      });
+        this.http.post(url, body).subscribe(data => {
+          console.log("Load data from server: ", data);
+          var user = data['token'];
+          this.globalSetting.user = user;
+          this.storage.set("token_id", user['token_id']);
+          resolve(user);
+        }, error => {
+          console.error("This line is never called ", error);
+          reject(error);
+        });
+      }
 
     });
     return promise;
   }
 
   get_token_id() {
-    var promise = new Promise<string>((resolve, reject) => {
+    var promise = new Promise<string>(async (resolve, reject) => {
       var user = this.globalSetting.user;
-      if (user != null) {
+      if (user) {
         resolve(user['token_id'])
-      } else {
-        this.try_login().then(user => {
-          resolve(user['token_id'])
-        }, error => {
-          reject(error);
-        })
+      }
+      let token_id = await this.storage.get("token_id")
+      if (token_id) {
+        return resolve(token_id)
       }
     });
     return promise;
@@ -121,7 +116,7 @@ export class RestProvider {
   try_login() {
     var promise = new Promise((resolve, reject) => {
       var user = this.check_login();
-      if (user != null) {
+      if (user) {
         resolve(user);
       } else {
         this.login_by_token().then(user => {
@@ -178,6 +173,25 @@ export class RestProvider {
 
         resolve(user);
       }, error => {
+        reject(error);
+      });
+    });
+    return promise;
+  }
+
+  async load_user_info(user_id) {
+    var token_id = await this.get_token_id();
+    var promise = new Promise<User>((resolve, reject) => {
+      var url = this.serverAddress + "/api/users/" + user_id;
+      this.http.get(url, {
+        headers: { "token-id": token_id }
+      }).subscribe(data => {
+        console.log("Get data from server:", data);
+        var user = data['user'] as User;
+        user.pic = this.serverAddress + user.pic;
+        resolve(user);
+      }, error => {
+        if (this.handle_http_error(error)) { return; }
         reject(error);
       });
     });
@@ -306,4 +320,48 @@ export class RestProvider {
     });
     return promise;
   }
+
+  async put_msg(user_id, msg) {
+    var token_id = await this.get_token_id();
+    var promise = new Promise((resolve, reject) => {
+      var body = {
+        "msg": msg
+      };
+      var url = this.serverAddress + '/api/msg/' + user_id;
+      this.http.put(url, body, {
+        headers: { "token-id": token_id }
+      }).subscribe(data => {
+        console.log("Load data from server ", data);
+        var msg = data['msg'];
+        resolve(msg);
+      }, error => {
+        if (this.handle_http_error(error)) {
+          return;
+        }
+        reject(error);
+      });
+    });
+    return promise;
+  }
+
+  async get_msg(user_id) {
+    var token_id = await this.get_token_id();
+    var promise = new Promise<any[]>((resolve, reject) => {
+      var url = this.serverAddress + '/api/msg/' + user_id;
+      this.http.get(url, {
+        headers: { "token-id": token_id }
+      }).subscribe(data => {
+        console.log("Load data from server ", data);
+        var msgs = data['msgs'];
+        resolve(msgs);
+      }, error => {
+        if (this.handle_http_error(error)) {
+          return;
+        }
+        reject(error);
+      });
+    });
+    return promise;
+  }
+
 }
