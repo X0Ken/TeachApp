@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { GlobalSettingService } from '../../global';
 import { HttpClient } from '@angular/common/http';
-import { TalkPage } from '../../talk/talk'
+import { TalkJobPage } from '../../talk/job/talk'
 import { EvaluatePage } from '../evaluate/evaluate'
 import { TeacherDetailInfoPage } from '../teacher-detail-info/teacher-detail-info'
 import { RestProvider } from '../../../providers/rest/rest';
@@ -13,19 +13,8 @@ import { RestProvider } from '../../../providers/rest/rest';
   templateUrl: 'teacher-detail.html'
 })
 export class TeacherDetailPage {
-  uri = "/teachers"
-  teacher: Object = {
-    "uuid": "2d62e44693fd44b2be4a4220f62239dc",
-    "method": "网络",
-    "gender": "男",
-    "school": "北京演艺专修学院",
-    "highest_education": "本科",
-    "pay": "20-30",
-    "region": "海淀区",
-    "subject": "语文",
-    "time": "上午",
-    "create_at": "2018-05-28 23:37:24"
-  };
+  teacher: any;
+  job: any;
 
   constructor(public navCtrl: NavController, params: NavParams,
     public globalSetting: GlobalSettingService,
@@ -33,7 +22,8 @@ export class TeacherDetailPage {
     private rest: RestProvider,
     public http: HttpClient) {
     var teacher = params.get("teacher");
-    this.getTeacherDetail(teacher['user_id']);
+    this.job = params.get("job");
+    this.getTeacherDetail(teacher['id']);
   }
 
   getTeacherDetail(teacher_id) {
@@ -53,10 +43,11 @@ export class TeacherDetailPage {
     });
   }
 
-  talk() {
-    this.navCtrl.push(TalkPage, {
-      "receiver_id": this.teacher['id'],
-      "talk_type": "job"
+  async talk() {
+    let receiver = await this.rest.load_user_info(this.teacher['id'])
+    this.navCtrl.push(TalkJobPage, {
+      "receiver": receiver,
+      "job": this.job
     });
   }
 

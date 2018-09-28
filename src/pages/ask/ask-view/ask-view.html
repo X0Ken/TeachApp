@@ -22,17 +22,9 @@
     <ion-list-header>
       消息列表
     </ion-list-header>
-    <button ion-item (click)="talk()">
+    <button ion-item (click)="talk(msg)" *ngFor="let msg of msgs">
       <ion-icon name='chatbubbles' item-start style="color: #470a97"></ion-icon>
-      我有一个想法
-    </button>
-    <button ion-item (click)="talk()">
-      <ion-icon name='chatbubbles' item-start style="color: #470a97"></ion-icon>
-      这个问题我可以解决
-    </button>
-    <button ion-item (click)="talk()">
-      <ion-icon name='chatbubbles' item-start style="color: #470a97"></ion-icon>
-      这份问题简单
+      <span *ngIf="msg.sender">{{ msg.sender.username }} :</span> {{ msg.content }}
     </button>
   </ion-list>
 

@@ -3,26 +3,28 @@ import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 import { OrderListPage } from '../order-list/order-list';
+import { RestProvider } from '../../../providers/rest/rest';
 
 @Component({
   selector: 'page-allorder',
   templateUrl: 'allorder.html'
 })
 export class AllOrderPage {
-  path: string = 'http://47.104.87.111:8888/jobs';
 
-  constructor(public navCtrl: NavController, public http: HttpClient) {
+  constructor(public navCtrl: NavController,
+    public rest: RestProvider) {
 
   }
 
   offerJobSelected() {
     this.navCtrl.push(OrderListPage, {
-      "title": "找家教订单",
-      "order_type": 'findTeacher'
+      "order_type": 'offer_job'
     });
   }
   findJobSelected() {
-    this.navCtrl.push(OrderListPage, { "title": "当家教订单" });
+    this.navCtrl.push(OrderListPage, {
+      "order_type": 'job'
+    });
   }
   askSelected() {
     this.navCtrl.push(OrderListPage, {
@@ -31,7 +33,10 @@ export class AllOrderPage {
     });
   }
   answerSelected() {
-    this.navCtrl.push(OrderListPage, { "title": "回答订单" });
+    this.navCtrl.push(OrderListPage, {
+      "title": "回答订单",
+      "order_type": 'answer'
+    });
   }
 
 

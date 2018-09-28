@@ -88,7 +88,8 @@ export class OfferJobPage {
       }
     }
     this.rest.put_teacher_job(job).then(value => {
-      this.navCtrl.push(TeacherListPage);
+      this.navCtrl.push(TeacherListPage, { "job": value });
+      console.log("view job: ", value);
     }, error => {
       console.error("This line is never called ", error);
     })

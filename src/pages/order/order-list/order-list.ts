@@ -1,6 +1,8 @@
 
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { RestProvider } from '../../../providers/rest/rest';
+import { Order } from '../../models';
 
 
 @Component({
@@ -13,132 +15,49 @@ export class OrderListPage {
     item_title2: string = "待确认";
     order_type: string = "findTeacher";
 
-    items: object[];
+    items: Order[];
 
-    constructor(public navCtrl: NavController, params: NavParams) {
-        this.title = params.get("title");
+    constructor(public navCtrl: NavController, params: NavParams,
+        public rest: RestProvider) {
         this.order_type = params.get("order_type");
-        if (this.order_type == "findTeacher") {
+
+        if (this.order_type == "offer_job") {
+            this.title = "找家教订单";
             this.item_title2 = "已发布";
-            this.init_post();
+        } else if (this.order_type == "job") {
+            this.title = "当家教订单";
+            this.item_title2 = "待确认";
         } else if (this.order_type == "question") {
+            this.title = "提问订单";
             this.item_title2 = "已发布";
-            this.init_post();
-        } else {
-            this.init_get();
+        } else if (this.order_type == "answer") {
+            this.title = "回答订单";
+            this.item_title2 = "待确认";
         }
+        this.items = [];
+        this.load_data();
     }
 
     item_filter(status: string) {
         var filterItems = this.items.filter((item) => {
-            return item['status'] == status;
+            return item['state'] == status;
         });
         return filterItems;
     }
 
-    init_get() {
-        this.items = [
-            {
-                "title": "需要确认的订单",
-                "status": "wait"
-            },
-            {
-                "title": "进行中的订单",
-                "status": "going"
-            },
-            {
-                "title": "完成的订单",
-                "status": "done"
-            },
-            {
-                "title": "进行中的订单",
-                "status": "going"
-            },
-            {
-                "title": "完成的订单",
-                "status": "done"
-            },
-            {
-                "title": "需要确认的订单",
-                "status": "wait"
-            },
-            {
-                "title": "完成的订单",
-                "status": "done"
-            },
-            {
-                "title": "进行中的订单",
-                "status": "going"
-            },
-            {
-                "title": "完成的订单",
-                "status": "done"
-            },
-            {
-                "title": "需要确认的订单",
-                "status": "wait"
-            },
-            {
-                "title": "需要确认的订单",
-                "status": "wait"
-            },
-            {
-                "title": "需要确认的订单",
-                "status": "wait"
-            },
-        ]
+    async load_data() {
+        this.items = await this.rest.list_orders(this.order_type);
+        for (let item of this.items) {
+            if (item.type == 'question') {
+                item.question = await this.rest.get_question(item.type_id);
+                item.title = item.question.content;
+            } else if (item.type == 'job') {
+                item.job = await this.rest.get_teacher_job(item.type_id);
+                item.title = item.job.subject + "-" + item.job.method;
+            } else {
+                console.log("Error type");
+            }
+        }
     }
 
-    init_post() {
-        this.items = [
-            {
-                "title": "已经发布的订单",
-                "status": "wait"
-            },
-            {
-                "title": "进行中的订单",
-                "status": "going"
-            },
-            {
-                "title": "完成的订单",
-                "status": "done"
-            },
-            {
-                "title": "进行中的订单",
-                "status": "going"
-            },
-            {
-                "title": "完成的订单",
-                "status": "done"
-            },
-            {
-                "title": "已经发布的订单",
-                "status": "wait"
-            },
-            {
-                "title": "完成的订单",
-                "status": "done"
-            },
-            {
-                "title": "进行中的订单",
-                "status": "going"
-            },
-            {
-                "title": "完成的订单",
-                "status": "done"
-            },
-            {
-                "title": "已经发布的订单",
-                "status": "wait"
-            },
-            {
-                "title": "已经发布的订单",
-                "status": "wait"
-            },
-            {
-                "title": "已经发布的订单",
-                "status": "wait"
-            },
-        ]
-    }
 }

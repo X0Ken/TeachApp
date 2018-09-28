@@ -1,16 +1,15 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      问题列表
+      我发布的
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
-      {{ item.content }}
+      {{ item.title }}
     </button>
   </ion-list>
 </ion-content>

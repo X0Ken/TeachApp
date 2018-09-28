@@ -26,25 +26,25 @@
 <ion-content>
     <div [ngSwitch]="status">
         <ion-list *ngSwitchCase="'all'">
-            <button ion-item *ngFor="let item of items">
+            <ion-item *ngFor="let item of items">
                 {{ item.title }}
-            </button>
+            </ion-item>
 
         </ion-list>
         <ion-list *ngSwitchCase="'need_confirm'">
-            <button ion-item *ngFor="let item of item_filter('wait')">
+            <ion-item *ngFor="let item of item_filter('create')">
                 {{ item.title }}
-            </button>
+            </ion-item>
         </ion-list>
         <ion-list *ngSwitchCase="'doing'">
-            <button ion-item *ngFor="let item of item_filter('going')">
+            <ion-item *ngFor="let item of item_filter('payed')">
                 {{ item.title }}
-            </button>
+            </ion-item>
         </ion-list>
         <ion-list *ngSwitchCase="'done'">
-            <button ion-item *ngFor="let item of item_filter('done')">
+            <ion-item *ngFor="let item of item_filter('rejected')">
                 {{ item.title }}
-            </button>
+            </ion-item>
         </ion-list>
     </div>
 </ion-content>

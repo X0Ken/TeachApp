@@ -14,14 +14,14 @@
 
     <ion-item no-lines text-wrap *ngFor="let item of items">
 
-      <ion-avatar item-start *ngIf="item.sender != me.id">
+      <ion-avatar item-start *ngIf="item.sender_id != me.id">
         <img src="{{ receiver.pic }}">
       </ion-avatar>
-      <p item-left *ngIf="item.sender != me.id">{{ item.content }}</p>
+      <p item-left *ngIf="item.sender_id != me.id">{{ item.content }}</p>
 
 
-      <p item-right *ngIf="item.sender == me.id">{{ item.content }}</p>
-      <ion-avatar item-end *ngIf="item.sender == me.id">
+      <p item-right *ngIf="item.sender_id == me.id">{{ item.content }}</p>
+      <ion-avatar item-end *ngIf="item.sender_id == me.id">
         <img src="{{ me.pic }}">
       </ion-avatar>
 
@@ -43,27 +43,21 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col>
+        <!-- <ion-col>
           语音
         </ion-col>
         <ion-col>
           视频
-        </ion-col>
-        <ion-col *ngIf="talk_type == 'job'" (click)="goCreateOrder()">
+        </ion-col> -->
+
+        <ion-col (click)="goCreateOrder()">
           生成订单
         </ion-col>
-        <ion-col *ngIf="talk_type == 'job'">
-          查看订单
-        </ion-col>
-
-        <ion-col *ngIf="talk_type == 'question'" (click)="goCreateOrder()">
-          完成订单
-        </ion-col>
-        <ion-col *ngIf="talk_type == 'question'">
+        <!-- <ion-col>
           取消订单
-        </ion-col>
+        </ion-col> -->
       </ion-row>
-      <ion-row>
+      <!-- <ion-row>
         <ion-col>
           照片
         </ion-col>
@@ -76,7 +70,7 @@
         <ion-col>
           红包
         </ion-col>
-      </ion-row>
+      </ion-row> -->
     </ion-grid>
   </ion-toolbar>
 </ion-footer>

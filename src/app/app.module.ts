@@ -8,7 +8,7 @@ import { GlobalSettingService } from "../pages/global";
 import { AskPage } from '../pages/ask/ask-write/ask';
 import { AskViewPage } from '../pages/ask/ask-view/ask-view';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { ContactPage } from '../pages/user/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { OfferJobPage } from '../pages/offerjob/offerjob';
@@ -18,7 +18,7 @@ import { OrderListPage } from '../pages/order/order-list/order-list';
 import { AllOrderPage } from '../pages/order/order-overview/allorder';
 import { AnswerListPage } from '../pages/answer/answer-list/answer-list';
 import { AnswerShowPage } from '../pages/answer/answer-show/answer-show';
-import { TalkPage } from '../pages/talk/talk';
+import { AnswerKeywordPage } from '../pages/answer/keyword/keyword';
 import { TeacherListPage } from '../pages/offerjob/teacher-list/teacher-list';
 import { TeacherDetailPage } from '../pages/offerjob/teacher-detail/teacher-detail';
 import { SelfInfoPage } from '../pages/findjob/self-info/self-info';
@@ -28,6 +28,7 @@ import { CreateJobOrderPage } from '../pages/order/create-job-order/create-job-o
 import { CreateQuestionOrderPage } from '../pages/order/create-question-order/create-question-order';
 import { EvaluatePage } from '../pages/offerjob/evaluate/evaluate';
 import { TeacherDetailInfoPage } from '../pages/offerjob/teacher-detail-info/teacher-detail-info';
+import { PostListPage } from '../pages/user/postlist/postlist';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,6 +37,8 @@ import { SearchPage } from '../pages/common/search/search';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { RestProvider } from '../providers/rest/rest';
+import { TalkQuestionPage } from '../pages/talk/question/talk';
+import { TalkJobPage } from '../pages/talk/job/talk';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,6 @@ import { RestProvider } from '../providers/rest/rest';
     AskViewPage,
     AnswerListPage,
     AnswerShowPage,
-    TalkPage,
     TeacherListPage,
     TeacherDetailPage,
     SelfInfoPage,
@@ -63,8 +65,11 @@ import { RestProvider } from '../providers/rest/rest';
     CreateJobOrderPage,
     CreateQuestionOrderPage,
     EvaluatePage,
-    TeacherDetailInfoPage
-
+    TeacherDetailInfoPage,
+    PostListPage,
+    AnswerKeywordPage,
+    TalkQuestionPage,
+    TalkJobPage
   ],
   imports: [
     BrowserModule,
@@ -90,7 +95,6 @@ import { RestProvider } from '../providers/rest/rest';
     AskViewPage,
     AnswerListPage,
     AnswerShowPage,
-    TalkPage,
     TeacherListPage,
     TeacherDetailPage,
     SelfInfoPage,
@@ -99,7 +103,11 @@ import { RestProvider } from '../providers/rest/rest';
     CreateJobOrderPage,
     CreateQuestionOrderPage,
     EvaluatePage,
-    TeacherDetailInfoPage
+    TeacherDetailInfoPage,
+    PostListPage,
+    AnswerKeywordPage,
+    TalkQuestionPage,
+    TalkJobPage
   ],
   providers: [
     StatusBar,

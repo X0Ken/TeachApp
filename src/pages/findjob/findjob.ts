@@ -5,8 +5,9 @@ import { AlertController } from 'ionic-angular';
 
 import { GlobalSettingService } from '../global';
 import { SelfInfoPage } from './self-info/self-info';
-import { TalkPage } from '../talk/talk';
 import { RestProvider } from '../../providers/rest/rest';
+import { TalkJobPage } from '../talk/job/talk';
+import { Msg } from '../models';
 
 @Component({
   selector: 'page-find-job',
@@ -17,6 +18,7 @@ export class FindJobPage {
   path: string = '/jobs';
   uri: string = '/teachers';
   context: string = '';
+  msgs: Msg[];
 
   constructor(public navCtrl: NavController,
     public http: HttpClient, public alertCtrl: AlertController,
@@ -27,8 +29,17 @@ export class FindJobPage {
 
   ionViewDidEnter() {
     this.loadTeacherInfo();
+    this.load_msgs();
   }
 
+  async load_msgs() {
+    this.msgs = await this.rest.get_job_last_msg();
+    console.log("view: ", this.msgs)
+    for (let msg of this.msgs) {
+      let u = await this.rest.load_user_info(msg.sender_id);
+      msg.sender = u;
+    }
+  }
 
   async loadTeacherInfo() {
     var user = await this.rest.try_login()
@@ -53,10 +64,11 @@ export class FindJobPage {
     this.navCtrl.push(SelfInfoPage);
   }
 
-  go_talk() {
-    this.navCtrl.push(TalkPage, {
-      "receiver_id": 2,
-      "talk_type": "job"
+  async go_talk(msg: Msg) {
+    let job = await this.rest.get_teacher_job(msg.type_id);
+    this.navCtrl.push(TalkJobPage, {
+      "receiver": msg.sender,
+      "job": job
     });
   }
 

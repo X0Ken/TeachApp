@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { AnswerShowPage } from '../answer-show/answer-show'
 
@@ -12,13 +12,12 @@ import { RestProvider } from '../../../providers/rest/rest';
 })
 export class AnswerListPage {
   items: object[];
+  keyword: string;
 
   constructor(public navCtrl: NavController,
-    private rest: RestProvider) {
-    this.initializeItems();
-  }
-
-  initializeItems() {
+    private rest: RestProvider,
+    private params: NavParams) {
+    this.keyword = this.params.get("keyword");
     this.loadQuestion();
   }
 
@@ -28,7 +27,7 @@ export class AnswerListPage {
   }
 
   loadQuestion() {
-    this.rest.load_questions().then((items) => {
+    this.rest.load_question_by_key(this.keyword).then((items) => {
       this.items = items;
     }, error => {
       console.error("This line is never called ", error);

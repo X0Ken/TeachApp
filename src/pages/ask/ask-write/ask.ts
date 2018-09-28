@@ -39,7 +39,6 @@ export class AskPage {
   showPrompt() {
     var prompt = this.alertCtrl.create({
       title: '设置关键词',
-      message: "多个关键词可以用空格分开",
       inputs: [
         {
           name: 'keywords',

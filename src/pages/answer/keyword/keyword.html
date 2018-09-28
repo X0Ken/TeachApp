@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      关键词列表
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item no-lines>
+    <ion-label>接收问题</ion-label>
+    <ion-toggle checked="false"></ion-toggle>
+  </ion-item>
+
+  <div *ngIf="view_state == 'view'; ">
+    <ion-list>
+      <button ion-item *ngFor="let key of keywords" (click)="itemSelected(key)">
+        {{ key.keyword }}
+      </button>
+    </ion-list>
+  </div>
+
+  <div *ngIf="view_state == 'insert'; ">
+    <ion-list>
+      <ion-item *ngFor="let key of keywords">
+        {{ key.keyword }}
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="view_state == 'delete'; ">
+    <ion-list>
+      <ion-item *ngFor="let key of keywords">
+        <ion-label>{{ key.keyword }}</ion-label>
+        <ion-checkbox [(ngModel)]="key.selected"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <div *ngIf="view_state == 'insert';">
+      <ion-item>
+        <ion-label floating>在此输入要添加的关键词</ion-label>
+        <ion-input type="text" [(ngModel)]="input_key"></ion-input>
+      </ion-item>
+      <button ion-button block (click)="add_key()">增加</button>
+    </div>
+
+    <div *ngIf="view_state == 'view';">
+      <button ion-button block (click)="add_view()">增加关键词</button>
+      <button ion-button block (click)="delete_view()">删除关键词</button>
+    </div>
+
+    <div *ngIf="view_state == 'delete';">
+      <button ion-button block (click)="rm_keys()">确认删除</button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

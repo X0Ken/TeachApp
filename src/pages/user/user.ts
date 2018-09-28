@@ -5,6 +5,8 @@ import { AllOrderPage } from '../order/order-overview/allorder';
 import { LoginPage } from './login/login';
 
 import { RestProvider } from '../../providers/rest/rest';
+import { PostListPage } from './postlist/postlist';
+import { ContactPage } from './contact/contact';
 
 
 
@@ -30,6 +32,14 @@ export class UserPage {
 
   goAllOrder() {
     this.navCtrl.push(AllOrderPage);
+  }
+
+  goMyPostPage() {
+    this.navCtrl.push(PostListPage);
+  }
+
+  go_contact_Page() {
+    this.navCtrl.push(ContactPage);
   }
 
   login_out() {

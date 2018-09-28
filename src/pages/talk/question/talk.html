@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <div *ngIf="receiver!=null">
+        {{ receiver.username }}
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content_view>
+
+  <ion-list *ngIf="receiver && me">
+
+    <ion-item no-lines text-wrap *ngFor="let item of items">
+
+      <ion-avatar item-start *ngIf="item.sender_id != me.id">
+        <img src="{{ receiver.pic }}">
+      </ion-avatar>
+      <p item-left *ngIf="item.sender_id != me.id">{{ item.content }}</p>
+
+
+      <p item-right *ngIf="item.sender_id == me.id">{{ item.content }}</p>
+      <ion-avatar item-end *ngIf="item.sender_id == me.id">
+        <img src="{{ me.pic }}">
+      </ion-avatar>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-item>
+      <ion-input type="text" value="" [(ngModel)]="content"></ion-input>
+      <button item-end ion-button (click)="pushMessage()">
+        <ion-icon name="md-add"></ion-icon>
+      </button>
+    </ion-item>
+
+
+    <ion-grid>
+      <ion-row>
+        <!-- <ion-col>
+          语音
+        </ion-col>
+        <ion-col>
+          视频
+        </ion-col> -->
+
+        <ion-col (click)="goCreateOrder()">
+          完成订单
+        </ion-col>
+        <!-- <ion-col>
+          取消订单
+        </ion-col> -->
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col>
+          照片
+        </ion-col>
+        <ion-col>
+          位置
+        </ion-col>
+        <ion-col>
+          文件
+        </ion-col>
+        <ion-col>
+          红包
+        </ion-col>
+      </ion-row> -->
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

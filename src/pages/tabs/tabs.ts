@@ -5,11 +5,11 @@ import { OfferJobPage } from '../offerjob/offerjob';
 import { FindJobPage } from '../findjob/findjob';
 import { UserPage } from '../user/user';
 import { AskPage } from '../ask/ask-write/ask';
-import { AnswerListPage } from '../answer/answer-list/answer-list';
 import { LoginPage } from '../user/login/login';
 
 import { RestProvider } from '../../providers/rest/rest';
 import { Events } from 'ionic-angular';
+import { AnswerKeywordPage } from '../answer/keyword/keyword';
 
 @Component({
   selector: 'ng-if-else',
@@ -18,7 +18,7 @@ import { Events } from 'ionic-angular';
 export class TabsPage {
 
   tab1Root = AskPage;
-  tab2Root = AnswerListPage;
+  tab2Root = AnswerKeywordPage;
   tab3Root = OfferJobPage;
   tab4Root = FindJobPage;
   tab5Root = UserPage;
@@ -34,6 +34,7 @@ export class TabsPage {
       console.log('Need auth');
       this.go_login();
     });
+    this.try_login();
   }
 
   go_login() {
@@ -46,7 +47,9 @@ export class TabsPage {
 
 
   try_login() {
+    console.log('ts try login');
     this.rest.try_login().then(value => {
+      console.log('Get user: ', value);
       this.login = true;
       return;
     }, error => {

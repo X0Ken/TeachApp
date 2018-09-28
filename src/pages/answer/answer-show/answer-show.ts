@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { TalkPage } from '../../talk/talk'
+import { TalkQuestionPage } from '../../talk/question/talk';
+import { RestProvider } from '../../../providers/rest/rest';
 
 @Component({
   selector: 'page-answer-show',
@@ -10,14 +11,17 @@ export class AnswerShowPage {
 
   item: object = null;
 
-  constructor(public navCtrl: NavController, params: NavParams) {
+  constructor(public navCtrl: NavController, params: NavParams,
+    public rest: RestProvider) {
     this.item = params.get("item");
   }
 
-  talk() {
-    this.navCtrl.push(TalkPage, {
-      "receiver_id": this.item['asker'],
-      "talk_type": "question"
+  async talk() {
+    let receiver = await this.rest.load_user_info(this.item['asker_id'])
+    console.log("receiver:  ", receiver)
+    this.navCtrl.push(TalkQuestionPage, {
+      "receiver": receiver,
+      "question": this.item
     });
   }
 
