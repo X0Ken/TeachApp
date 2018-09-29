@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { RestProvider } from '../../../providers/rest/rest';
-import { User } from '../../models'
+import { User, Job, Msg } from '../../models'
 import { CreateJobOrderPage } from '../../order/create-job-order/create-job-order';
 
 @Component({
@@ -12,10 +12,10 @@ import { CreateJobOrderPage } from '../../order/create-job-order/create-job-orde
 export class TalkJobPage {
   receiver: User;
   me: User;
-  items: any[];
+  items: Msg[];
   content: string = '';
   worker: number;
-  job: any;
+  job: Job;
 
 
   @ViewChild('content_view') content_view: any;
@@ -85,7 +85,10 @@ export class TalkJobPage {
   }
 
   goCreateOrder() {
-    this.navCtrl.push(CreateJobOrderPage);
+    this.navCtrl.push(CreateJobOrderPage, {
+      'job': this.job,
+      'receiver': this.receiver
+    });
   }
 
 }

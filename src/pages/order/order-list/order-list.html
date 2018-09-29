@@ -14,10 +14,10 @@
                 {{ item_title2 }}
             </ion-segment-button>
             <ion-segment-button value="doing">
-                进行中
+                已完成
             </ion-segment-button>
             <ion-segment-button value="done">
-                已完成
+                失败
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
@@ -26,10 +26,9 @@
 <ion-content>
     <div [ngSwitch]="status">
         <ion-list *ngSwitchCase="'all'">
-            <ion-item *ngFor="let item of items">
+            <button ion-item *ngFor="let item of items" (click)="go_detail(item)">
                 {{ item.title }}
-            </ion-item>
-
+            </button>
         </ion-list>
         <ion-list *ngSwitchCase="'need_confirm'">
             <ion-item *ngFor="let item of item_filter('create')">

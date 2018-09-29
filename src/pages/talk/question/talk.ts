@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { CreateQuestionOrderPage } from '../../order/create-question-order/create-question-order';
 
 import { RestProvider } from '../../../providers/rest/rest';
-import { User } from '../../models'
+import { User, Order, Question, Msg } from '../../models'
 
 @Component({
   selector: 'page-talk-question',
@@ -13,10 +13,10 @@ import { User } from '../../models'
 export class TalkQuestionPage {
   receiver: User;
   me: User;
-  items: any[];
+  items: Msg[];
   content: string = '';
   worker: number;
-  question: any;
+  question: Question;
 
 
   @ViewChild('content_view') content_view: any;
@@ -85,8 +85,11 @@ export class TalkQuestionPage {
     clearInterval(this.worker);
   }
 
-  goCreateOrder() {
-    this.navCtrl.push(CreateQuestionOrderPage);
+  async goCreateOrder() {
+    this.navCtrl.push(CreateQuestionOrderPage, {
+      'question': this.question,
+      'receiver': this.receiver
+    });
   }
 
 }

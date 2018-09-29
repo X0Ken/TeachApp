@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../../providers/rest/rest';
 import { Order } from '../../models';
+import { CreateQuestionOrderPage } from '../create-question-order/create-question-order';
+import { CreateJobOrderPage } from '../create-job-order/create-job-order';
 
 
 @Component({
@@ -57,6 +59,19 @@ export class OrderListPage {
             } else {
                 console.log("Error type");
             }
+        }
+    }
+
+    go_detail(order: Order) {
+        console.log("push order", order);
+        if (order.type == "question") {
+            this.navCtrl.push(CreateQuestionOrderPage, {
+                'order': order,
+            });
+        } else if (order.type == "job") {
+            this.navCtrl.push(CreateJobOrderPage, {
+                'order': order,
+            });
         }
     }
 

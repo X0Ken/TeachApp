@@ -8,57 +8,78 @@
 
 <ion-content>
 
-  <ion-list>
+  <div *ngIf=" order != null ">
+    <ion-list>
 
-    <ion-item no-lines>
-      <ion-label>计时单位</ion-label>
-      <ion-select [(ngModel)]="unit">
-        <ion-option value="小时">小时</ion-option>
-        <ion-option value="天">天</ion-option>
-      </ion-select>
-    </ion-item>
+      <ion-item no-lines>
+        <ion-label>计时单位</ion-label>
+        <ion-select [(ngModel)]="order.unit">
+          <ion-option value="次">次</ion-option>
+          <ion-option value="小时">小时</ion-option>
+          <ion-option value="天">天</ion-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item no-lines>
-      <ion-label fixed>单位时间课时费</ion-label>
-      <ion-input type="number" [(ngModel)]="unit_price" (ionChange)="calc_price($event)" class="textBox"></ion-input>
-    </ion-item>
-
-
-
-    <!-- <ion-item> -->
-    <ion-grid class="order-item">
-      <ion-row>
-        <ion-col col-8>
-          <ion-label class="grid-left">课时选择</ion-label>
-        </ion-col>
-        <ion-col col-1>
-          <ion-icon name="md-add" (click)="inc_num($event)" class="grid-ion"></ion-icon>
-        </ion-col>
-        <ion-col col-2>
-          <ion-input type="number" [(ngModel)]="unit_num" (ionChange)="calc_price($event)"></ion-input>
-        </ion-col>
-        <ion-col col-1>
-          <ion-icon name="md-remove" (click)="dec_num($event)" class="grid-ion"></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <!-- </ion-item> -->
+      <ion-item no-lines>
+        <ion-label fixed>单位时间课时费</ion-label>
+        <ion-input type="number" [(ngModel)]="order.unit_price" (ionChange)="calc_price($event)" class="textBox"></ion-input>
+      </ion-item>
 
 
 
+      <!-- <ion-item> -->
+      <ion-grid class="order-item">
+        <ion-row>
+          <ion-col col-8>
+            <ion-label class="grid-left">课时选择</ion-label>
+          </ion-col>
+          <ion-col col-1>
+            <ion-icon name="md-remove" (click)="dec_num($event)" class="grid-ion"></ion-icon>
+          </ion-col>
+          <ion-col col-2>
+            <ion-input type="number" [(ngModel)]="order.number" (ionChange)="calc_price($event)"></ion-input>
+          </ion-col>
+          <ion-col col-1>
+            <ion-icon name="md-add" (click)="inc_num($event)" class="grid-ion"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- </ion-item> -->
 
-    <ion-item no-lines>
-      <ion-label fixed>计算总金额</ion-label>
-      <ion-input type="number" [(ngModel)]="price" readonly="true" class="textBox"></ion-input>
-    </ion-item>
 
 
-    <div class="btn_box">
-      <button ion-button round block (click)="payForOrder()">支付订单</button>
 
-      <button ion-button round block (click)="sendOrder()">发送订单</button>
+      <ion-item no-lines>
+        <ion-label fixed>计算总金额</ion-label>
+        <ion-input type="number" [(ngModel)]="order.amount" readonly="true" class="textBox"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button round block *ngIf=" order.id == null; " (click)="createOrder()">创建订单</button>
+
+    <div *ngIf="order.state == 'create' ">
+      <div *ngIf="role == 'payee' ">
+        <button ion-button round block *ngIf=" order.state=='create' " (click)="acceptOrder()">确认收款</button>
+      </div>
+      <div *ngIf="role == 'payer' ">
+          <ion-card>
+              <ion-card-header>
+                提示
+              </ion-card-header>
+              <ion-card-content>
+                在线付款研发中，请与回答者协商付款方式，并在回答者收款后，提示其收款。
+              </ion-card-content>
+            </ion-card>
+      </div>
     </div>
 
-  </ion-list>
+    <div *ngIf="order.state == 'payed' ">
+      <button ion-button round block>评价</button>
+    </div>
+
+    <button ion-button round block (click)="go_contact_Page()">投诉</button>
+  </div>
+
 
 </ion-content>

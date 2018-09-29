@@ -45,7 +45,7 @@ export class PostListPage {
 
   itemSelected(item: PostItem) {
     if (item.type == 'teacherjob') {
-      this.navCtrl.push(TeacherListPage);
+      this.navCtrl.push(TeacherListPage, { 'job': item.job });
     } else if (item.type == 'question') {
       this.navCtrl.push(AskViewPage, { 'question': item.question });
     } else {

@@ -3,6 +3,7 @@ export class User {
     id: number;
     pic: string;
     username: string;
+    token_id: string;
 }
 
 export class PostItem {
@@ -39,6 +40,22 @@ export class Job {
     school: string
     subject: string
     time: string
+    provider_id: number
+}
+
+export class Teacher {
+    id: number
+    gender: string
+    highest_education: string
+    method: string
+    pay: string
+    region: string
+    school: string
+    subject: string
+    school_subject: string
+    time: string
+    self_evaluate: string
+    idcard: string
 }
 
 export class Question {

@@ -8,16 +8,37 @@
 
 <ion-content>
 
-  <ion-list>
+  <div *ngIf=" role != null ">
+    <ion-list>
 
-    <div class="btn_box">
-      <button ion-button round block (click)="acceptOrder()">确认支付</button>
-      <button ion-button round block (click)="rejectOrder()">拒绝支付</button>
+      <ion-item no-lines>
+        问题费用: {{ pay }} 元
+      </ion-item>
+    </ion-list>
 
-      <button ion-button round block>评价</button>
-      <button ion-button round block>投诉</button>
+    <button ion-button round block *ngIf=" order == null; " (click)="createOrder()">创建订单</button>
+
+    <div *ngIf=" order != null && order.state == 'create' ">
+      <div *ngIf="role == 'payee' ">
+        <button ion-button round block *ngIf=" order.state=='create' " (click)="acceptOrder()">确认收款</button>
+      </div>
+      <div *ngIf="role == 'payer' ">
+        <ion-card>
+          <ion-card-header>
+            提示
+          </ion-card-header>
+          <ion-card-content>
+            在线付款研发中，请与回答者协商付款方式，并在回答者收款后，提示其收款。
+          </ion-card-content>
+        </ion-card>
+      </div>
     </div>
 
-  </ion-list>
+    <div *ngIf=" order != null && order.state == 'payed' ">
+      <button ion-button round block>评价</button>
+    </div>
+
+    <button ion-button round block (click)="go_contact_Page()">投诉</button>
+  </div>
 
 </ion-content>

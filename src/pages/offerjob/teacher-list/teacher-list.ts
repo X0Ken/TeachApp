@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { TeacherDetailPage } from '../teacher-detail/teacher-detail';
 import { RestProvider } from '../../../providers/rest/rest';
+import { Job } from '../../models';
 
 @Component({
   selector: 'page-teacher-list',
@@ -11,7 +12,7 @@ import { RestProvider } from '../../../providers/rest/rest';
 export class TeacherListPage {
 
   items: Array<any>;
-  job: any;
+  job: Job;
 
   constructor(public navCtrl: NavController,
     params: NavParams,
@@ -38,7 +39,7 @@ export class TeacherListPage {
   }
 
   getTeacherList() {
-    this.rest.load_teachers().then((value) => {
+    this.rest.list_teacher_by_job(this.job.id).then((value) => {
       this.items = value;
     }, error => {
       console.log(error);

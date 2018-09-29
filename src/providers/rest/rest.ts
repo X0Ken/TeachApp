@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { GlobalSettingService } from '../../pages/global'
 
 import { Events } from 'ionic-angular';
-import { User, AnswerKeywords, Msg, Job, Order, Question } from '../../pages/models';
+import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher } from '../../pages/models';
 
 /*
   Generated class for the RestProvider provider.
@@ -119,8 +119,8 @@ export class RestProvider {
     return promise;
   }
 
-  try_login() {
-    var promise = new Promise((resolve, reject) => {
+  try_login(): Promise<User> {
+    var promise = new Promise<User>((resolve, reject) => {
       console.log('rest try login');
       var user = this.check_login();
       console.log('rest user', user);
@@ -129,7 +129,7 @@ export class RestProvider {
         resolve(user);
       } else {
         console.log('rest go login_by_token');
-        this.login_by_token().then(user => {
+        this.login_by_token().then((user: User) => {
           console.log('rest login_by_token resolve user');
           resolve(user);
         }, error => {
@@ -207,6 +207,10 @@ export class RestProvider {
     return promise;
   }
 
+  async get_user_myself() {
+    return this.try_login();
+  }
+
   load_teacher_info(teacher_id) {
     var promise = new Promise((resolve, reject) => {
       if (teacher_id == null) {
@@ -265,12 +269,17 @@ export class RestProvider {
     return promise;
   }
 
+  list_teacher_by_job(jid: number): Promise<Teacher[]> {
+    let url = this.serverAddress + '/api/teachers/job/' + jid;
+    return this.hget(url, "teachers")
+  }
+
   put_teacher_job(job): Promise<Job> {
     let url = this.serverAddress + '/api/teacherjobs';
     return this.hput(url, job, "teacherjob")
   }
 
-  get_teacher_job(jid): Promise<Job> {
+  get_teacher_job(jid: number): Promise<Job> {
     let url = this.serverAddress + '/api/teacherjobs/' + jid;
     return this.hget(url, "teacherjob")
   }
@@ -345,10 +354,14 @@ export class RestProvider {
   handle_http_error(error: Response): boolean {
     if (error.status == 401) {
       console.log("events 'user:login' ");
-      this.events.publish('user:login');
+      this.go_login();
       return true;
     }
     return false;
+  }
+
+  go_login() {
+    this.events.publish('user:login');
   }
 
   async put_question(question) {
@@ -444,6 +457,32 @@ export class RestProvider {
     return promise;
   }
 
+  async hpost(url: string, body: any, key?: string, params?: { [param: string]: string }) {
+    let token_id = await this.get_token_id();
+    let options = {}
+    if (params) {
+      options['params'] = params;
+    }
+    if (token_id) {
+      options['headers'] = { "token-id": token_id };
+    }
+    var promise = new Promise<any>((resolve, reject) => {
+      this.http.post(url, body, options).subscribe(data => {
+        console.log("Load data from server ", data);
+        if (key) {
+          data = data[key];
+        }
+        resolve(data);
+      }, error => {
+        if (this.handle_http_error(error)) {
+          return;
+        }
+        reject(error);
+      });
+    });
+    return promise;
+  }
+
   get_question_last_msg(qid: number): Promise<Msg[]> {
     let url = this.serverAddress + '/api/msg/question/' + qid;
     return this.hget(url, "msgs")
@@ -489,6 +528,40 @@ export class RestProvider {
       }
     }
     return this.hput(url, data, "order")
+  }
+
+  payed_order(oid: number): Promise<Order> {
+    let url = this.serverAddress + '/api/orders/' + oid;
+    let data = {
+      "order": {
+        state: "payed",
+      }
+    }
+    return this.hpost(url, data, "order")
+  }
+
+  reject_order(oid: number): Promise<Order> {
+    let url = this.serverAddress + '/api/orders/' + oid;
+    let data = {
+      "order": {
+        state: "rejected",
+      }
+    }
+    return this.hpost(url, data, "order")
+  }
+
+  get_order(oid: number): Promise<Order> {
+    let url = this.serverAddress + '/api/orders/' + oid;
+    return this.hget(url, "order")
+  }
+
+  get_order_by_question(qid: number): Promise<Order> {
+    let url = this.serverAddress + '/api/orders/question/' + qid;
+    return this.hget(url, "order")
+  }
+  get_order_by_job(jid: number): Promise<Order> {
+    let url = this.serverAddress + '/api/orders/job/' + jid;
+    return this.hget(url, "order")
   }
 
   list_orders(type: string): Promise<Order[]> {

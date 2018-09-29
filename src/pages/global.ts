@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { User } from './models';
 
 @Injectable()
 export class GlobalSettingService {
-  public user: object = null;
+  public user: User = null;
 
   constructor() {
     console.log('Hello GlobalSettingService Provider');
