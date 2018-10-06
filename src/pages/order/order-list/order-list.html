@@ -31,19 +31,19 @@
             </button>
         </ion-list>
         <ion-list *ngSwitchCase="'need_confirm'">
-            <ion-item *ngFor="let item of item_filter('create')">
+            <button ion-item *ngFor="let item of item_filter('create')" (click)="go_detail(item)">
                 {{ item.title }}
-            </ion-item>
+            </button>
         </ion-list>
         <ion-list *ngSwitchCase="'doing'">
-            <ion-item *ngFor="let item of item_filter('payed')">
+            <button ion-item *ngFor="let item of item_filter('payed')" (click)="go_detail(item)">
                 {{ item.title }}
-            </ion-item>
+            </button>
         </ion-list>
         <ion-list *ngSwitchCase="'done'">
-            <ion-item *ngFor="let item of item_filter('rejected')">
+            <button ion-item *ngFor="let item of item_filter('rejected')" (click)="go_detail(item)">
                 {{ item.title }}
-            </ion-item>
+            </button>
         </ion-list>
     </div>
 </ion-content>

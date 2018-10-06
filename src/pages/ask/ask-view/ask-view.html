@@ -8,9 +8,20 @@
 
 <ion-content>
   <ion-item>
+    <ion-label color="primary" stacked>关键词</ion-label>
+    <ion-note item-end>
+      {{ question.keywords }}
+    </ion-note>
+  </ion-item>
+  <ion-item>
     <ion-label color="primary" stacked>问题描述</ion-label>
     <ion-textarea rows="16" [(ngModel)]="question.content" readonly=true></ion-textarea>
   </ion-item>
+  <div>
+    <div style="width:30%; float: left;margin-left: 3%" *ngFor="let att of attachments">
+      <img src="{{ att }}" alt="{{ att }}">
+    </div>
+  </div>
   <button ion-item no-lines (click)="goEdit()">
     <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
     编辑

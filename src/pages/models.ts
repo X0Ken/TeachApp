@@ -6,6 +6,17 @@ export class User {
     token_id: string;
 }
 
+export class UserInfo {
+    id: number;
+    name: string;
+    age: number;
+    education: string;
+    gender: string;
+    self_evaluate: string;
+    create_at: string;
+    update_at: string;
+}
+
 export class PostItem {
     title: string;
     type: string;
@@ -23,7 +34,7 @@ export class AnswerKeywords {
 export class Msg {
     id: number;
     sender: User;
-    sender_id: string;
+    sender_id: number;
     receiver_id: number;
     content: string;
     type: string;
@@ -35,7 +46,7 @@ export class Job {
     gender: string
     highest_education: string
     method: string
-    pay: string
+    pay: number
     region: string
     school: string
     subject: string
@@ -48,7 +59,7 @@ export class Teacher {
     gender: string
     highest_education: string
     method: string
-    pay: string
+    pay: number
     region: string
     school: string
     subject: string
@@ -56,6 +67,7 @@ export class Teacher {
     time: string
     self_evaluate: string
     idcard: string
+    score: number
 }
 
 export class Question {
@@ -65,6 +77,7 @@ export class Question {
     pay: number;
     content: string;
     keywords: string;
+    attachments: string;
 }
 
 export class Order {

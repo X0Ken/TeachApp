@@ -39,6 +39,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { RestProvider } from '../providers/rest/rest';
 import { TalkQuestionPage } from '../pages/talk/question/talk';
 import { TalkJobPage } from '../pages/talk/job/talk';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { UserInfoPage } from '../pages/user/info/userinfo';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,8 @@ import { TalkJobPage } from '../pages/talk/job/talk';
     PostListPage,
     AnswerKeywordPage,
     TalkQuestionPage,
-    TalkJobPage
+    TalkJobPage,
+    UserInfoPage
   ],
   imports: [
     BrowserModule,
@@ -107,14 +111,17 @@ import { TalkJobPage } from '../pages/talk/job/talk';
     PostListPage,
     AnswerKeywordPage,
     TalkQuestionPage,
-    TalkJobPage
+    TalkJobPage,
+    UserInfoPage
   ],
   providers: [
+    ImagePicker,
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     GlobalSettingService,
-    RestProvider
+    RestProvider,
+    FileTransfer
   ]
 })
 export class AppModule { }

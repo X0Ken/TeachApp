@@ -7,6 +7,22 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button block (click)='sort_by_score()'>评分
+          <span *ngIf="order_by == 'score' && order_direction == 1">∨</span>
+          <span *ngIf="order_by == 'score' && order_direction == -1">∧</span>
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block (click)='sort_by_price()'>价格
+          <span *ngIf="order_by == 'price' && order_direction == 1">∨</span>
+          <span *ngIf="order_by == 'price' && order_direction == -1">∧</span>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)='showTeacher(item)'>
       <ion-avatar item-start>

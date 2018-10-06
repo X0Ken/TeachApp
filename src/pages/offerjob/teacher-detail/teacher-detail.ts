@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
-import { GlobalSettingService } from '../../global';
-import { HttpClient } from '@angular/common/http';
 import { TalkJobPage } from '../../talk/job/talk'
 import { EvaluatePage } from '../evaluate/evaluate'
 import { TeacherDetailInfoPage } from '../teacher-detail-info/teacher-detail-info'
@@ -17,10 +15,9 @@ export class TeacherDetailPage {
   job: any;
 
   constructor(public navCtrl: NavController, params: NavParams,
-    public globalSetting: GlobalSettingService,
     public modalCtrl: ModalController,
     private rest: RestProvider,
-    public http: HttpClient) {
+    public toastCtrl: ToastController) {
     var teacher = params.get("teacher");
     this.job = params.get("job");
     this.getTeacherDetail(teacher['id']);
@@ -45,10 +42,26 @@ export class TeacherDetailPage {
 
   async talk() {
     let receiver = await this.rest.load_user_info(this.teacher['id'])
+    let me = await this.rest.get_user_myself()
+    if (me.id == receiver.id) {
+      this.showToast("middle", "不能与自己聊天");
+      return;
+    }
     this.navCtrl.push(TalkJobPage, {
       "receiver": receiver,
       "job": this.job
     });
   }
+
+  showToast(position: string, msg: string) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+      position: position
+    });
+
+    toast.present(toast);
+  }
+
 
 }

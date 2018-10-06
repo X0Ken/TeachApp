@@ -33,8 +33,14 @@ export class PostListPage {
 
     var jobs = await this.rest.load_my_teacher_jobs();
     for (var j of jobs) {
+      let title = "";
+      if (j['subject']) { title = title + " " + j['subject']; };
+      if (j['method']) { title = title + " " + j['method']; };
+      if (j['pay']) { title = title + " " + j['pay']; };
+      if (j['region']) { title = title + " " + j['region']; };
+      if (j['school']) { title = title + " " + j['school']; };
       this.items.push({
-        "title": j['subject'] + "-" + j['method'] + "-" + j['rejion'],
+        "title": title,
         "type": "teacherjob",
         "type_id": j['id'],
         "question": null,

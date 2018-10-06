@@ -7,37 +7,44 @@
 </ion-header>
 
 <ion-content>
-  <img class="full-width" src="assets/imgs/user1.jpg" />
+  <div *ngIf="userinfo != null">
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="{{ rest.get_res_path(user.pic) }}">
+      </ion-thumbnail>
+      <h2>{{ user.username }}</h2>
+    </ion-item>
 
-  <ion-card-content>
-    <ion-card-title>
-      {{ user.username }}
-    </ion-card-title>
-    <p>
-      我对家教的期望就是，自己的努力让学生学有所成，健康快乐学习、成长。同时自己对以前的知识不断深化，从学生身上收获1份童真。
-    </p>
-  </ion-card-content>
+    <ion-card-content>
+      <p>
+        {{ userinfo.self_evaluate }}
+      </p>
+    </ion-card-content>
 
-  <button ion-item no-lines (click)="goAllOrder()">
-    <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
-    我的订单
-  </button>
+    <button ion-item no-lines (click)="goAllOrder()">
+      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      我的订单
+    </button>
 
-  <button ion-item no-lines (click)="goMyPostPage()">
-    <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
-    我发布的
-  </button>
+    <button ion-item no-lines (click)="goMyPostPage()">
+      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      我发布的
+    </button>
 
-  <button ion-item no-lines (click)="go_contact_Page()">
-    <ion-icon name='chatbubbles' item-start style="color: #470a97"></ion-icon>
-    联系客服
-  </button>
+    <button ion-item no-lines (click)="goUserInfoPage()">
+      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      我的信息
+    </button>
 
-
-  <button ion-item no-lines (click)="login_out()">
-    <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
-    退出
-  </button>
+    <button ion-item no-lines (click)="go_contact_Page()">
+      <ion-icon name='chatbubbles' item-start style="color: #470a97"></ion-icon>
+      联系客服
+    </button>
 
 
+    <button ion-item no-lines (click)="login_out()">
+      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      退出
+    </button>
+  </div>
 </ion-content>

@@ -5,7 +5,8 @@ import { Storage } from '@ionic/storage';
 import { GlobalSettingService } from '../../pages/global'
 
 import { Events } from 'ionic-angular';
-import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher } from '../../pages/models';
+import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher, UserInfo } from '../../pages/models';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 
 /*
   Generated class for the RestProvider provider.
@@ -21,6 +22,7 @@ export class RestProvider {
   constructor(public http: HttpClient,
     private globalSetting: GlobalSettingService,
     public events: Events,
+    private transfer: FileTransfer,
     private storage: Storage) {
     console.log('Hello RestProvider Provider');
   }
@@ -188,7 +190,7 @@ export class RestProvider {
     return promise;
   }
 
-  async load_user_info(user_id) {
+  async load_user_info(user_id: number) {
     var token_id = await this.get_token_id();
     var promise = new Promise<User>((resolve, reject) => {
       let url = this.serverAddress + "/api/users/" + user_id;
@@ -209,6 +211,11 @@ export class RestProvider {
 
   async get_user_myself() {
     return this.try_login();
+  }
+
+  async update_user(user: User) {
+    let url = this.serverAddress + "/api/users/" + user.id;
+    return this.hpost(url, { "user": user }, "user")
   }
 
   load_teacher_info(teacher_id) {
@@ -308,9 +315,9 @@ export class RestProvider {
   async load_questions(filter?: {
     only_me?: boolean;
     keyword?: string
-  }) {
+  }): Promise<Question[]> {
     var token_id = await this.get_token_id();
-    var promise = new Promise<any[]>((resolve, reject) => {
+    var promise = new Promise<Question[]>((resolve, reject) => {
       let url = this.serverAddress + '/api/questions';
       let params = {}
 
@@ -345,7 +352,7 @@ export class RestProvider {
     });
   }
 
-  async load_question_by_key(k: string) {
+  async load_question_by_key(k: string): Promise<Question[]> {
     return await this.load_questions({
       keyword: k
     });
@@ -385,6 +392,14 @@ export class RestProvider {
       });
     });
     return promise;
+  }
+
+  async update_question(question) {
+    let url = this.serverAddress + '/api/questions/' + question.id;
+    let body = {
+      "question": question
+    };
+    return this.hpost(url, body, "question");
   }
 
   async get_msg(user_id) {
@@ -481,6 +496,16 @@ export class RestProvider {
       });
     });
     return promise;
+  }
+
+  get_user_info(): Promise<UserInfo> {
+    let url = this.serverAddress + '/api/users/info';
+    return this.hget(url, "user_info")
+  }
+
+  update_user_info(userinfo: UserInfo): Promise<UserInfo> {
+    let url = this.serverAddress + '/api/users/info';
+    return this.hpost(url, { "user_info": userinfo }, "user_info")
   }
 
   get_question_last_msg(qid: number): Promise<Msg[]> {
@@ -633,4 +658,45 @@ export class RestProvider {
     });
     return promise;
   }
+
+  // 上传图片
+  async uploadImg(path: string): Promise<string> {
+    console.log("uploadImg: prepare");
+    var token_id = await this.get_token_id();
+    var promise = new Promise<string>((resolve, reject) => {
+      if (!path) {
+        reject("path is null")
+      }
+
+      // todo: try remove headers
+      let options = {
+        fileKey: 'file1',
+        headers: {
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',//不加入 发生错误！！
+          "token-id": token_id
+        },
+        params: {}
+      };
+      let url = this.serverAddress + '/api/upload';
+      console.log("uploadImg: start");
+      let fileTransfer = this.transfer.create();
+      fileTransfer.upload(path, url, options)
+        .then((data) => {
+          console.log("uploadImg: end ", JSON.stringify(data));
+          resolve(JSON.parse(data.response)['path'])
+        }, (err) => {
+          console.log("error: ", err);
+          reject(err)
+        });
+    });
+    return promise;
+  }
+
+  get_image_path(path: string) {
+    return this.serverAddress + path;
+  }
+  get_res_path(path: string) {
+    return this.serverAddress + path;
+  }
+
 }

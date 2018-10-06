@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>当家教</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content>
+  <div *ngIf="userinfo != null">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>姓名</ion-label>
+        <ion-input type="text" [(ngModel)]="userinfo.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>年龄</ion-label>
+        <ion-input type="number" [(ngModel)]="userinfo.age"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>学历</ion-label>
+        <ion-select [(ngModel)]="userinfo.education">
+          <ion-option value="本科">本科</ion-option>
+          <ion-option value="硕士">硕士</ion-option>
+          <ion-option value="博士">博士</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>性别</ion-label>
+        <ion-select [(ngModel)]="userinfo.gender">
+          <ion-option value="男">男</ion-option>
+          <ion-option value="女">女</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <button ion-item no-lines (click)="select_image()">
+        <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+        上传头像
+      </button>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="{{ rest.get_res_path(user.pic) }}">
+        </ion-thumbnail>
+        <h2>{{ user.username }}</h2>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary" stacked>自我评价</ion-label>
+        <ion-textarea rows="3" [(ngModel)]="userinfo.self_evaluate"></ion-textarea>
+      </ion-item>
+
+      <button ion-button color="primary" block (click)="submit()">保存</button>
+    </ion-list>
+  </div>
+
+</ion-content>

@@ -6,6 +6,7 @@ import { LoginPage } from '../login/login';
 
 import { RestProvider } from '../../../providers/rest/rest';
 import { AlertController } from 'ionic-angular';
+import { UserInfoPage } from '../info/userinfo';
 
 @Component({
   selector: 'page-register',
@@ -33,7 +34,7 @@ export class RegisterPage {
 
   register() {
     this.rest.register_user(this.username, this.password, this.password2).then(user => {
-      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.setRoot(UserInfoPage);
     }, error => {
       this.showAlert(error);
     });

@@ -7,6 +7,8 @@ import { LoginPage } from './login/login';
 import { RestProvider } from '../../providers/rest/rest';
 import { PostListPage } from './postlist/postlist';
 import { ContactPage } from './contact/contact';
+import { UserInfo, User } from '../models';
+import { UserInfoPage } from './info/userinfo';
 
 
 
@@ -15,8 +17,8 @@ import { ContactPage } from './contact/contact';
   templateUrl: 'user.html'
 })
 export class UserPage {
-  user: object = { "username": "userfortest" };
-  uri: string = '/token';
+  user: User = null;
+  userinfo: UserInfo = null;
 
   constructor(public navCtrl: NavController,
     private rest: RestProvider,
@@ -24,22 +26,27 @@ export class UserPage {
     this.load_user();
   }
 
-  load_user() {
+  async load_user() {
     this.rest.try_login().then(value => {
       this.user = value;
     })
+    this.userinfo = await this.rest.get_user_info();
   }
 
   goAllOrder() {
-    this.navCtrl.push(AllOrderPage);
+    this.app.getRootNav().push(AllOrderPage);
   }
 
   goMyPostPage() {
-    this.navCtrl.push(PostListPage);
+    this.app.getRootNav().push(PostListPage);
   }
 
   go_contact_Page() {
-    this.navCtrl.push(ContactPage);
+    this.app.getRootNav().push(ContactPage);
+  }
+
+  goUserInfoPage() {
+    this.app.getRootNav().push(UserInfoPage);
   }
 
   login_out() {

@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AnswerShowPage } from '../answer-show/answer-show'
 
 import { RestProvider } from '../../../providers/rest/rest';
+import { Question } from '../../models';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { RestProvider } from '../../../providers/rest/rest';
   templateUrl: 'answer-list.html'
 })
 export class AnswerListPage {
-  items: object[];
+  items: Question[];
   keyword: string;
 
   constructor(public navCtrl: NavController,
@@ -21,9 +22,9 @@ export class AnswerListPage {
     this.loadQuestion();
   }
 
-  itemSelected(item) {
-    console.log(item);
-    this.navCtrl.push(AnswerShowPage, { "item": item });
+  itemSelected(question:Question) {
+    console.log(question);
+    this.navCtrl.push(AnswerShowPage, { "question": question });
   }
 
   loadQuestion() {

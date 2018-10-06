@@ -7,17 +7,23 @@
 </ion-header>
 
 <ion-content>
-  <ion-item no-lines>
-    <p>
-      金额：{{ item.pay }}
-    </p>
-    <p>
-      关键字：{{ item.keywords }}
-    </p>
-    <p>
-      {{ item.context }}
-    </p>
-  </ion-item>
+  <p>
+    金额：{{ question.pay }}
+  </p>
+  <p>
+    关键字：{{ question.keywords }}
+  </p>
+  <p>
+    {{ question.content }}
+  </p>
+
+  <div>
+    <div style="width:30%; float: left;margin-left: 3%" *ngFor="let att of attachments">
+      <img src="{{ att }}" alt="{{ att }}">
+    </div>
+  </div>
+
+
 </ion-content>
 
 <ion-footer>

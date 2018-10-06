@@ -7,32 +7,40 @@
 </ion-header>
 
 <ion-content>
-  <button ion-item no-lines (click)="showPrompt()">
-    <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
-    关键词
-    <ion-note item-end>
-      {{ keywords }}
-    </ion-note>
-  </button>
-  <ion-item>
-    <ion-label color="primary" stacked>问题描述</ion-label>
-    <ion-textarea rows="16" [(ngModel)]="content"></ion-textarea>
-  </ion-item>
-  <button ion-item no-lines>
-    <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
-    上传照片或视频
-  </button>
-  <ion-item>
-    <ion-label>设置金额</ion-label>
-    <ion-input type="number" value="" [(ngModel)]="pay"></ion-input>
-    <ion-badge item-end>
-      <button ion-button color="primary" style="height: 1em" (click)="setPay()">
-        参考价格
-      </button>
-    </ion-badge>
-  </ion-item>
-  <div padding>
-    <button ion-button color="primary" block (click)="submit()">发布问题</button>
+  <div *ngIf="question != null">
+    <button ion-item no-lines (click)="showPrompt()">
+      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      关键词
+      <ion-note item-end>
+        {{ question.keywords }}
+      </ion-note>
+    </button>
+    <ion-item>
+      <ion-label color="primary" stacked>问题描述</ion-label>
+      <ion-textarea rows="16" [(ngModel)]="question.content"></ion-textarea>
+    </ion-item>
+    <button ion-item no-lines (click)="select_image()">
+      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      上传照片或视频
+    </button>
+    <div>
+      <div style="width:30%; float: left;margin-left: 3%" *ngFor="let att of attachments">
+        <img src="{{ att }}" alt="{{ att }}">
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label>设置金额</ion-label>
+      <ion-input type="number" value="" [(ngModel)]="question.pay"></ion-input>
+      <ion-badge item-end>
+        <button ion-button color="primary" style="height: 1em" (click)="setPay()">
+          参考价格
+        </button>
+      </ion-badge>
+    </ion-item>
+    <div padding>
+      <button [disabled]="!question.content || !question.keywords" ion-button color="primary" block (click)="submit()">发布问题</button>
+    </div>
   </div>
 
 </ion-content>

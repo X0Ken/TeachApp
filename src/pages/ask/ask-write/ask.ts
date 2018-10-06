@@ -3,9 +3,11 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { AskViewPage } from '../ask-view/ask-view';
-import { HttpClient } from '@angular/common/http';
-import { GlobalSettingService } from '../../global';
 import { RestProvider } from '../../../providers/rest/rest';
+
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Question } from '../../models';
+
 
 @Component({
   selector: 'page-ask',
@@ -13,27 +15,59 @@ import { RestProvider } from '../../../providers/rest/rest';
 })
 export class AskPage {
 
-  pay: number = 0;
-  keywords: string = "";
-  content: string = "";
+  question: Question;
+  attachments: string[];
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
-    public http: HttpClient,
     private rest: RestProvider,
-    public globalSetting: GlobalSettingService,
+    private imagePicker: ImagePicker,
     params: NavParams) {
-    var question = params.get("question");
-    if (question != null) {
-      this.pay = question['pay'];
-      this.keywords = question['keywords'];
-      this.content = question['content'];
+    this.attachments = [];
+    this.question = params.get("question");
+    console.log("question:", this.question);
+    if (this.question == null) {
+      this.question = new Question();
+      this.question.attachments = "";
+    }
+    console.log("question:", this.question);
+    this.update_attchments();
+  }
 
+  update_attchments() {
+    this.attachments = [];
+    for (let att of this.question.attachments.split(',')) {
+      att = att.trim()
+      if (att.length > 0) {
+        this.attachments.push(this.rest.get_image_path(att));
+      }
     }
   }
 
+  select_image() {
+    let options = {
+      maximumImagesCount: 1,//选择一张图片
+      width: 800,
+      height: 800,
+      quality: 80
+    };
+    this.imagePicker.getPictures(options).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+        console.log('Image URI: ' + results[i]);
+        this.rest.uploadImg(results[i]).then(att => {
+          this.question.attachments = this.question.attachments + "," + att;
+          this.update_attchments();
+        }, err => {
+          console.log('uploadImg error: ' + err);
+        });
+      }
+    }, (err) => {
+      console.log('Error: ' + err);
+    });
+  }
+
   setPay() {
-    this.pay = Math.floor(Math.random() * 100);
+    this.question.pay = Math.floor(Math.random() * 100);
   }
 
   showPrompt() {
@@ -43,14 +77,14 @@ export class AskPage {
         {
           name: 'keywords',
           placeholder: '关键词',
-          value: this.keywords
+          value: this.question.keywords
         },
       ],
       buttons: [
         {
           text: '确认',
           handler: data => {
-            this.keywords = data.keywords;
+            this.question.keywords = data.keywords;
             console.log('Saved clicked');
 
             console.log(data);
@@ -62,16 +96,19 @@ export class AskPage {
   }
 
   submit() {
-    var body = {
-      'pay': this.pay.toString(),
-      'content': this.content,
-      'keywords': this.keywords
-    };
-    this.rest.put_question(body).then(question => {
-      this.navCtrl.setRoot(AskViewPage, { 'question': question });
-    }, error => {
-      console.error("This line is never called ", error);
-    })
+    if (this.question.id == null) {
+      this.rest.put_question(this.question).then(question => {
+        this.navCtrl.setRoot(AskViewPage, { 'question': question });
+      }, error => {
+        console.error("This line is never called ", error);
+      });
+    } else {
+      this.rest.update_question(this.question).then(question => {
+        this.navCtrl.setRoot(AskViewPage, { 'question': question });
+      }, error => {
+        console.error("This line is never called ", error);
+      });
+    }
   }
 
 }
