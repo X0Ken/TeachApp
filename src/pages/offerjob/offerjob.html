@@ -4,8 +4,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content >
-  <ion-list >
+<ion-content>
+  <ion-list>
     <ion-item>
       <ion-label>授课方式</ion-label>
       <ion-select [(ngModel)]="method">
@@ -24,7 +24,7 @@
       <ion-label (click)="goSearchSchool()">就读\毕业院校</ion-label>
       <ion-note item-end>
         {{ school }}
-        </ion-note>
+      </ion-note>
     </ion-item>
     <ion-item>
       <ion-label>最高学历</ion-label>
@@ -37,20 +37,22 @@
     <ion-item>
       <ion-label>预计薪资</ion-label>
       <ion-select [(ngModel)]="pay">
-        <ion-option value="10-20">10-20</ion-option>
-        <ion-option value="20-30">20-30</ion-option>
-        <ion-option value="30-40">30-40</ion-option>
-        <ion-option value="面谈">面谈</ion-option>
+        <ion-option value="10">10</ion-option>
+        <ion-option value="20">20</ion-option>
+        <ion-option value="30">30</ion-option>
+        <ion-option value="40">40</ion-option>
+        <ion-option value="50">50</ion-option>
+        <ion-option value="-1">面谈</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label (click)="goSearchRegion()">地区</ion-label>
       <ion-note item-end>
         {{ region }}
-        </ion-note>
+      </ion-note>
     </ion-item>
     <ion-item>
-      
+
       <ion-label>科目</ion-label>
       <ion-select [(ngModel)]="subject">
         <ion-option value="语文">语文</ion-option>
@@ -65,7 +67,7 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      
+
       <ion-label>授课时间</ion-label>
       <ion-select [(ngModel)]="time">
         <ion-option value="上午">上午</ion-option>
@@ -78,5 +80,3 @@
     </ion-item>
   </ion-list>
 </ion-content>
-
-

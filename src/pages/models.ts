@@ -95,3 +95,12 @@ export class Order {
     question: Question;
     state: string;
 }
+
+export class School {
+    id: number;
+    name: string;
+    department: string;
+    location: string;
+    level: string;
+    remark: string;
+}

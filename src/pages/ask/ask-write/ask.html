@@ -39,7 +39,10 @@
       </ion-badge>
     </ion-item>
     <div padding>
-      <button [disabled]="!question.content || !question.keywords" ion-button color="primary" block (click)="submit()">发布问题</button>
+      <button [disabled]="!question.content || !question.keywords" ion-button color="primary" block (click)="submit()">
+        <span *ngIf="question.id">更新问题</span>
+        <span *ngIf="!question.id">发布问题</span>
+      </button>
     </div>
   </div>
 

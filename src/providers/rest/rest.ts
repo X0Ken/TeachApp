@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { GlobalSettingService } from '../../pages/global'
 
 import { Events } from 'ionic-angular';
-import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher, UserInfo } from '../../pages/models';
+import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher, UserInfo, School } from '../../pages/models';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 
 /*
@@ -697,6 +697,11 @@ export class RestProvider {
   }
   get_res_path(path: string) {
     return this.serverAddress + path;
+  }
+
+  list_schools(): Promise<School[]> {
+    let url = this.serverAddress + '/api/schools';
+    return this.hget(url, "schools");
   }
 
 }

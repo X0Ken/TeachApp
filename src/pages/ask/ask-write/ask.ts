@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, App } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { AskViewPage } from '../ask-view/ask-view';
@@ -21,6 +21,7 @@ export class AskPage {
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
     private rest: RestProvider,
+    private app: App,
     private imagePicker: ImagePicker,
     params: NavParams) {
     this.attachments = [];
@@ -36,6 +37,9 @@ export class AskPage {
 
   update_attchments() {
     this.attachments = [];
+    if (this.question.attachments == null) {
+      return;
+    }
     for (let att of this.question.attachments.split(',')) {
       att = att.trim()
       if (att.length > 0) {
@@ -98,13 +102,13 @@ export class AskPage {
   submit() {
     if (this.question.id == null) {
       this.rest.put_question(this.question).then(question => {
-        this.navCtrl.setRoot(AskViewPage, { 'question': question });
+        this.app.getRootNav().push(AskViewPage, { 'question': question });
       }, error => {
         console.error("This line is never called ", error);
       });
     } else {
       this.rest.update_question(this.question).then(question => {
-        this.navCtrl.setRoot(AskViewPage, { 'question': question });
+        this.navCtrl.pop();
       }, error => {
         console.error("This line is never called ", error);
       });

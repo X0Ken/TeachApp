@@ -23,6 +23,12 @@ export class AskViewPage {
     this.update_attchments()
   }
 
+  ionViewDidEnter() {
+    this.load_msg();
+    this.update_attchments()
+  }
+
+
   update_attchments() {
     this.attachments = [];
     if (this.question.attachments == null) {
@@ -53,7 +59,7 @@ export class AskViewPage {
   }
 
   goEdit() {
-    this.navCtrl.setRoot(AskPage, { 'question': this.question });
+    this.navCtrl.push(AskPage, { 'question': this.question });
   }
 
 }

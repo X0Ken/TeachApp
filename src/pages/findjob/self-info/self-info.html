@@ -44,12 +44,12 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
-      <ion-label (click)="goSearchSchool()">就读\毕业院校</ion-label>
+    <button ion-item (click)="goSearchSchool()">
+      <ion-label>就读\毕业院校</ion-label>
       <ion-note item-end>
         {{ school }}
       </ion-note>
-    </ion-item>
+    </button  >
 
     <ion-item>
       <ion-label (click)="goSearchSchoolSubject()">专业</ion-label>
@@ -77,10 +77,12 @@
     <ion-item>
       <ion-label>薪资要求</ion-label>
       <ion-select [(ngModel)]="pay">
-        <ion-option value="10-20">10-20</ion-option>
-        <ion-option value="20-30">20-30</ion-option>
-        <ion-option value="30-40">30-40</ion-option>
-        <ion-option value="面谈">面谈</ion-option>
+        <ion-option value="10">10</ion-option>
+        <ion-option value="20">20</ion-option>
+        <ion-option value="30">30</ion-option>
+        <ion-option value="40">40</ion-option>
+        <ion-option value="50">50</ion-option>
+        <ion-option value="-1">面谈</ion-option>
       </ion-select>
     </ion-item>
 

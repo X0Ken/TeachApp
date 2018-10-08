@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { GlobalSettingService } from '../../global';
-import { HttpClient } from '@angular/common/http';
+import { NavController, ModalController } from 'ionic-angular';
 
 import { SearchPage } from '../../common/search/search';
 import { RestProvider } from '../../../providers/rest/rest';
+import { SchoolListPage } from '../../common/school-list/school-list';
+import { School } from '../../models';
 
 @Component({
   selector: 'page-self-info',
@@ -27,9 +27,8 @@ export class SelfInfoPage {
 
 
   constructor(public navCtrl: NavController,
-    public globalSetting: GlobalSettingService,
-    private rest: RestProvider,
-    public http: HttpClient) {
+    private modalCtrl: ModalController,
+    private rest: RestProvider) {
     this.initializeItems();
 
   }
@@ -58,28 +57,13 @@ export class SelfInfoPage {
   }
 
   goSearchSchool() {
-    //this.navCtrl.setRoot(SearchPage);
-    this.navCtrl.push(SearchPage, {
-      callback: this.setSchool,
-      items: ["北京中国农业大学(西校区)",
-        "北京联合大学应用文理学院",
-        "北京大学药学院",
-        "北京演艺专修学院",
-        "北京鲁迅文学院",
-        "北京中央财经大学",
-        "北京装备指挥技术学院",
-        "大连理工大学开发区校区",
-        "北京圆明园学院"]
+    let chooseModal = this.modalCtrl.create(SchoolListPage);
+    chooseModal.onDidDismiss((item: School) => {
+      if (item != null) {
+        this.school = item.name;
+      }
     });
-  }
-
-
-
-  setSchool = (_params) => {
-    return new Promise((resolve, reject) => {
-      this.school = _params;
-      resolve();
-    });
+    chooseModal.present();
   }
 
   goSearchSchoolSubject() {

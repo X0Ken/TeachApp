@@ -22,6 +22,9 @@ export class AnswerShowPage {
 
   update_attchments() {
     this.attachments = [];
+    if (this.question.attachments == null) {
+      return;
+    }
     for (let att of this.question.attachments.split(',')) {
       att = att.trim()
       if (att.length > 0) {
@@ -33,7 +36,7 @@ export class AnswerShowPage {
   async talk() {
     let receiver = await this.rest.load_user_info(this.question['asker_id'])
     let me = await this.rest.get_user_myself()
-    if (me.id == receiver.id){
+    if (me.id == receiver.id) {
       this.showToast("middle", "不能与自己聊天");
       return;
     }
