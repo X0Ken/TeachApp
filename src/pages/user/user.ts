@@ -9,6 +9,7 @@ import { PostListPage } from './postlist/postlist';
 import { ContactPage } from './contact/contact';
 import { UserInfo, User } from '../models';
 import { UserInfoPage } from './info/userinfo';
+import { TalkListPage } from '../talk/list/list';
 
 
 
@@ -31,6 +32,10 @@ export class UserPage {
       this.user = value;
     })
     this.userinfo = await this.rest.get_user_info();
+  }
+
+  goTalkList() {
+    this.app.getRootNav().push(TalkListPage);
   }
 
   goAllOrder() {

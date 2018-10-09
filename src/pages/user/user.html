@@ -21,18 +21,23 @@
       </p>
     </ion-card-content>
 
+    <button ion-item no-lines (click)="goTalkList()">
+      <ion-icon name='chatbubbles' item-start style="color: #cc66fc"></ion-icon>
+      消息
+    </button>
+
     <button ion-item no-lines (click)="goAllOrder()">
       <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
       我的订单
     </button>
 
     <button ion-item no-lines (click)="goMyPostPage()">
-      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      <ion-icon name='basket' item-start style="color: #d03e84"></ion-icon>
       我发布的
     </button>
 
     <button ion-item no-lines (click)="goUserInfoPage()">
-      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      <ion-icon name='information-circle' item-start style="color: #d03e84"></ion-icon>
       我的信息
     </button>
 
@@ -43,7 +48,7 @@
 
 
     <button ion-item no-lines (click)="login_out()">
-      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      <ion-icon name='exit' item-start style="color: #d03e84"></ion-icon>
       退出
     </button>
   </div>

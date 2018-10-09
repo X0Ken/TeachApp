@@ -104,3 +104,11 @@ export class School {
     level: string;
     remark: string;
 }
+
+export class Region {
+    id: number;
+    name: string;
+    code: string;
+    level: number;
+    parent_id: number;
+}

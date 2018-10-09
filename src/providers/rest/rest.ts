@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { GlobalSettingService } from '../../pages/global'
 
 import { Events } from 'ionic-angular';
-import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher, UserInfo, School } from '../../pages/models';
+import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher, UserInfo, School, Region } from '../../pages/models';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 
 /*
@@ -513,6 +513,11 @@ export class RestProvider {
     return this.hget(url, "msgs")
   }
 
+  get_channel_last_msg(): Promise<Msg[]> {
+    let url = this.serverAddress + '/api/msg/channel';
+    return this.hget(url, "msgs")
+  }
+
   get_question_user_msg(qid: number, uid: number): Promise<Msg[]> {
     let url = this.serverAddress + '/api/msg/question/' + qid + "/user/" + uid;
     return this.hget(url, "msgs")
@@ -702,6 +707,11 @@ export class RestProvider {
   list_schools(): Promise<School[]> {
     let url = this.serverAddress + '/api/schools';
     return this.hget(url, "schools");
+  }
+
+  list_regions(level: number, parent_id: number): Promise<Region[]> {
+    let url = this.serverAddress + '/api/regions/' + level + "/" + parent_id;
+    return this.hget(url, "regions");
   }
 
 }

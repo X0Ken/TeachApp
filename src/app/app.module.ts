@@ -43,6 +43,8 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { UserInfoPage } from '../pages/user/info/userinfo';
 import { SchoolListPage } from '../pages/common/school-list/school-list';
+import { RegionListPage } from '../pages/common/region-list/region-list';
+import { TalkListPage } from '../pages/talk/list/list';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { SchoolListPage } from '../pages/common/school-list/school-list';
     TalkQuestionPage,
     TalkJobPage,
     UserInfoPage,
-    SchoolListPage
+    SchoolListPage,
+    RegionListPage,
+    TalkListPage
   ],
   imports: [
     BrowserModule,
@@ -115,7 +119,9 @@ import { SchoolListPage } from '../pages/common/school-list/school-list';
     TalkQuestionPage,
     TalkJobPage,
     UserInfoPage,
-    SchoolListPage
+    SchoolListPage,
+    RegionListPage,
+    TalkListPage
   ],
   providers: [
     ImagePicker,

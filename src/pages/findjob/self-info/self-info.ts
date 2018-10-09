@@ -4,7 +4,8 @@ import { NavController, ModalController } from 'ionic-angular';
 import { SearchPage } from '../../common/search/search';
 import { RestProvider } from '../../../providers/rest/rest';
 import { SchoolListPage } from '../../common/school-list/school-list';
-import { School } from '../../models';
+import { School, Region } from '../../models';
+import { RegionListPage } from '../../common/region-list/region-list';
 
 @Component({
   selector: 'page-self-info',
@@ -89,20 +90,18 @@ export class SelfInfoPage {
   }
 
 
-  goSearchRegion() {
-    //this.navCtrl.setRoot(SearchPage);
-    this.navCtrl.push(SearchPage, {
-      callback: this.setRegion,
-      items: ["朝阳区", "丰台区", "通州区", "延庆县", "海淀区", "东城区",
-        "西城区", "石景山区", "昌平区", "大兴区", "房山区", "顺义区", "平谷区", "怀柔区", "密云县"]
-    });
-  }
 
-  setRegion = (_params) => {
-    return new Promise((resolve, reject) => {
-      this.region = _params;
-      resolve();
+  goSearchRegion() {
+    let chooseModal = this.modalCtrl.create(RegionListPage);
+    chooseModal.onDidDismiss((items: Region[]) => {
+      if (items != null) {
+        let name = items.map(function (elem) {
+          return elem.name;
+        }).join("-");
+        this.region = name;
+      }
     });
+    chooseModal.present();
   }
 
   check() {

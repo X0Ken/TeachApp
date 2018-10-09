@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
 
-import { GlobalSettingService } from '../global';
 import { SelfInfoPage } from './self-info/self-info';
 import { RestProvider } from '../../providers/rest/rest';
 import { TalkJobPage } from '../talk/job/talk';
@@ -21,9 +19,8 @@ export class FindJobPage {
   msgs: Msg[];
 
   constructor(public navCtrl: NavController,
-    public http: HttpClient, public alertCtrl: AlertController,
-    private rest: RestProvider,
-    public globalSetting: GlobalSettingService) {
+    public alertCtrl: AlertController,
+    private rest: RestProvider,) {
 
   }
 
