@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { GlobalSettingService } from '../../pages/global'
 
 import { Events } from 'ionic-angular';
-import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher, UserInfo, School, Region } from '../../pages/models';
+import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher, UserInfo, School, Region, Evaluate } from '../../pages/models';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 
 /*
@@ -712,6 +712,21 @@ export class RestProvider {
   list_regions(level: number, parent_id: number): Promise<Region[]> {
     let url = this.serverAddress + '/api/regions/' + level + "/" + parent_id;
     return this.hget(url, "regions");
+  }
+
+  list_user_evaluate(user_id: number): Promise<Evaluate[]> {
+    let url = this.serverAddress + '/api/evaluates/' + user_id + "?limit=30";
+    return this.hget(url, "evaluates");
+  }
+
+  get_user_evaluate(user_id: number, order_id: number): Promise<Evaluate> {
+    let url = this.serverAddress + '/api/evaluates/' + user_id + "/" + order_id;
+    return this.hget(url, "evaluate");
+  }
+
+  create_user_evaluate(eva: Evaluate): Promise<Evaluate> {
+    let url = this.serverAddress + '/api/evaluates/' + eva.user_id;
+    return this.hput(url, { evaluate: eva }, "evaluate");
   }
 
 }

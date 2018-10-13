@@ -112,3 +112,12 @@ export class Region {
     level: number;
     parent_id: number;
 }
+
+export class Evaluate {
+    id: number;
+    order_id: number;
+    user_id: number;
+    score: number;
+    content: string;
+    create_at: string;
+}

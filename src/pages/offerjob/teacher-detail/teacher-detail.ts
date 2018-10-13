@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { TalkJobPage } from '../../talk/job/talk'
-import { EvaluatePage } from '../evaluate/evaluate'
+import { ShowEvaluatePage } from '../evaluate/evaluate'
 import { TeacherDetailInfoPage } from '../teacher-detail-info/teacher-detail-info'
 import { RestProvider } from '../../../providers/rest/rest';
 
@@ -32,7 +32,9 @@ export class TeacherDetailPage {
   }
 
   showEvaluate() {
-    this.navCtrl.push(EvaluatePage);
+    this.navCtrl.push(ShowEvaluatePage, {
+      "teacher": this.teacher
+    });
   }
   showDetail() {
     this.navCtrl.push(TeacherDetailInfoPage, {

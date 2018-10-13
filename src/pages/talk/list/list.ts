@@ -32,7 +32,6 @@ export class TalkListPage {
       }
     }
     console.log("view: ", this.msgs)
-
   }
 
   async go_talk(msg: Msg) {

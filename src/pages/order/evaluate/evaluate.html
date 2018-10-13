@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      评价
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content text-center>
+  <div *ngIf="evaluate">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <h5>
+            评价：
+          </h5>
+        </ion-col>
+        <ion-col col-8>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-2>
+                <ion-icon name="md-star" (click)="set_ev(1)"></ion-icon>
+              </ion-col>
+              <ion-col col-2>
+                <ion-icon [name]="evaluate.score > 1? 'md-star' : 'md-star-outline' " (click)="set_ev(2)"></ion-icon>
+              </ion-col>
+              <ion-col col-2>
+                <ion-icon [name]="evaluate.score > 2? 'md-star' : 'md-star-outline' " (click)="set_ev(3)"></ion-icon>
+              </ion-col>
+              <ion-col col-2>
+                <ion-icon [name]="evaluate.score > 3? 'md-star' : 'md-star-outline' " (click)="set_ev(4)"></ion-icon>
+              </ion-col>
+              <ion-col col-2>
+                <ion-icon [name]="evaluate.score > 4? 'md-star' : 'md-star-outline' " (click)="set_ev(5)"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary" stacked>问题描述</ion-label>
+        <ion-textarea rows="16" [(ngModel)]="evaluate.content" [readonly]=" evaluate.id ? true : false "></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button full *ngIf="evaluate.id == null" (click)="submit()">提交</button>
+    <h4 *ngIf="evaluate.id != null">订单已完成</h4>
+  </div>
+
+</ion-content>

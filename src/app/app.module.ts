@@ -26,7 +26,7 @@ import { LoginPage } from '../pages/user/login/login';
 import { RegisterPage } from '../pages/user/register/register';
 import { CreateJobOrderPage } from '../pages/order/create-job-order/create-job-order';
 import { CreateQuestionOrderPage } from '../pages/order/create-question-order/create-question-order';
-import { EvaluatePage } from '../pages/offerjob/evaluate/evaluate';
+import { ShowEvaluatePage } from '../pages/offerjob/evaluate/evaluate';
 import { TeacherDetailInfoPage } from '../pages/offerjob/teacher-detail-info/teacher-detail-info';
 import { PostListPage } from '../pages/user/postlist/postlist';
 
@@ -45,6 +45,7 @@ import { UserInfoPage } from '../pages/user/info/userinfo';
 import { SchoolListPage } from '../pages/common/school-list/school-list';
 import { RegionListPage } from '../pages/common/region-list/region-list';
 import { TalkListPage } from '../pages/talk/list/list';
+import { EvaluatePage } from '../pages/order/evaluate/evaluate';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,7 @@ import { TalkListPage } from '../pages/talk/list/list';
     RegisterPage,
     CreateJobOrderPage,
     CreateQuestionOrderPage,
-    EvaluatePage,
+    ShowEvaluatePage,
     TeacherDetailInfoPage,
     PostListPage,
     AnswerKeywordPage,
@@ -79,7 +80,8 @@ import { TalkListPage } from '../pages/talk/list/list';
     UserInfoPage,
     SchoolListPage,
     RegionListPage,
-    TalkListPage
+    TalkListPage,
+    EvaluatePage
   ],
   imports: [
     BrowserModule,
@@ -112,7 +114,7 @@ import { TalkListPage } from '../pages/talk/list/list';
     RegisterPage,
     CreateJobOrderPage,
     CreateQuestionOrderPage,
-    EvaluatePage,
+    ShowEvaluatePage,
     TeacherDetailInfoPage,
     PostListPage,
     AnswerKeywordPage,
@@ -121,7 +123,8 @@ import { TalkListPage } from '../pages/talk/list/list';
     UserInfoPage,
     SchoolListPage,
     RegionListPage,
-    TalkListPage
+    TalkListPage,
+    EvaluatePage
   ],
   providers: [
     ImagePicker,

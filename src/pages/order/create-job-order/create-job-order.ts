@@ -4,6 +4,7 @@ import { ToastController } from 'ionic-angular';
 import { Order, User, Job } from '../../models';
 import { RestProvider } from '../../../providers/rest/rest';
 import { ContactPage } from '../../user/contact/contact';
+import { EvaluatePage } from '../evaluate/evaluate';
 
 @Component({
   selector: 'page-create-job-order',
@@ -143,6 +144,12 @@ export class CreateJobOrderPage {
     });
 
     toast.present(toast);
+  }
+
+  go_evaluate_Page() {
+    this.navCtrl.push(EvaluatePage, {
+      "order": this.order
+    });
   }
 
 }

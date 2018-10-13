@@ -1,22 +1,27 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { Evaluate, Teacher } from '../../models';
+import { RestProvider } from '../../../providers/rest/rest';
 
 @Component({
   selector: 'page-evaluate',
   templateUrl: 'evaluate.html'
 })
-export class EvaluatePage {
-  items: string[];
+export class ShowEvaluatePage {
+  items: Evaluate[];
+  teacher: Teacher
 
-  constructor(public navCtrl: NavController) {
-    this.items = [
-      "有耐心",
-      "特聪明",
-      "为人善良",
-      "多次得奖",
-      "招人喜欢",
-      "敬业",
-    ];
+  constructor(public navCtrl: NavController,
+    public params: NavParams,
+    public rest: RestProvider
+  ) {
+    this.teacher = this.params.get("teacher");
+    this.load();
+  }
+
+  async load() {
+    this.items = await this.rest.list_user_evaluate(this.teacher.id);
+    console.log(this.items);
   }
 
 }

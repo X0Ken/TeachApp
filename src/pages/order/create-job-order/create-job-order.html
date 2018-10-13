@@ -75,7 +75,7 @@
     </div>
 
     <div *ngIf="order.state == 'payed' ">
-      <button ion-button round block>评价</button>
+      <button ion-button round block (click)="go_evaluate_Page()">评价</button>
     </div>
 
     <button ion-button round block (click)="go_contact_Page()">投诉</button>
