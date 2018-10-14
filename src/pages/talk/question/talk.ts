@@ -4,7 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { CreateQuestionOrderPage } from '../../order/create-question-order/create-question-order';
 
 import { RestProvider } from '../../../providers/rest/rest';
-import { User, Order, Question, Msg } from '../../models'
+import { User, Question, Msg } from '../../models'
+import { MsgCheckProvider } from '../../../providers/msg';
 
 @Component({
   selector: 'page-talk-question',
@@ -23,6 +24,7 @@ export class TalkQuestionPage {
 
   constructor(public navCtrl: NavController,
     private rest: RestProvider,
+    public msgProvider: MsgCheckProvider,
     params: NavParams) {
     this.receiver = params.get("receiver");
     this.question = params.get("question");
@@ -39,6 +41,11 @@ export class TalkQuestionPage {
 
   async load_msgs() {
     let items = await this.rest.get_question_user_msg(this.question['id'], this.receiver.id);
+    items.map(msg => {
+      if (msg.unread == 1 && msg.receiver_id == this.me.id) {
+        this.rest.mark_msg_read(msg.id);
+      }
+    });
     // console.log("msgs:", this.items)
     let new_items = [];
     for (let item of items) {
@@ -76,12 +83,14 @@ export class TalkQuestionPage {
   }
 
   ionViewDidEnter() {
+    this.msgProvider.set_disable("question", this.question.id, this.receiver.id);
     this.worker = setInterval(() => {
       this.load_msgs();
     }, 500);
   }
 
   ionViewWillLeave() {
+    this.msgProvider.clear_disable();
     clearInterval(this.worker);
   }
 

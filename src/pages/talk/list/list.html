@@ -13,6 +13,8 @@
       <ion-icon name='bulb' item-start style="color: #470a97" *ngIf="msg.type=='question'"></ion-icon>
       <ion-icon name='book' item-start style="color: #470a97" *ngIf="msg.type=='job'"></ion-icon>
       <span *ngIf="msg.sender">{{ msg.sender.username }} :</span> {{ msg.content }}
+      <ion-badge item-end> {{ msgProvider.get_channel_number(msg.type, msg.type_id, msg.sender_id) +
+        msgProvider.get_channel_number(msg.type, msg.type_id, msg.receiver_id) }}</ion-badge>
     </button>
   </ion-list>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { App } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { SelfInfoPage } from './self-info/self-info';
@@ -18,9 +18,9 @@ export class FindJobPage {
   context: string = '';
   msgs: Msg[];
 
-  constructor(public navCtrl: NavController,
-    public alertCtrl: AlertController,
-    private rest: RestProvider,) {
+  constructor(public alertCtrl: AlertController,
+    private rest: RestProvider,
+    private app: App) {
 
   }
 
@@ -58,12 +58,12 @@ export class FindJobPage {
   }
 
   go_edit() {
-    this.navCtrl.push(SelfInfoPage);
+    this.app.getRootNav().push(SelfInfoPage);
   }
 
   async go_talk(msg: Msg) {
     let job = await this.rest.get_teacher_job(msg.type_id);
-    this.navCtrl.push(TalkJobPage, {
+    this.app.getRootNav().push(TalkJobPage, {
       "receiver": msg.sender,
       "job": job
     });

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 
 import { AllOrderPage } from '../order/order-overview/allorder';
-import { LoginPage } from './login/login';
 
 import { RestProvider } from '../../providers/rest/rest';
 import { PostListPage } from './postlist/postlist';
@@ -10,6 +9,7 @@ import { ContactPage } from './contact/contact';
 import { UserInfo, User } from '../models';
 import { UserInfoPage } from './info/userinfo';
 import { TalkListPage } from '../talk/list/list';
+import { MsgCheckProvider } from '../../providers/msg';
 
 
 
@@ -23,6 +23,7 @@ export class UserPage {
 
   constructor(public navCtrl: NavController,
     private rest: RestProvider,
+    public msgProvider: MsgCheckProvider,
     private app: App) {
     this.load_user();
   }
@@ -55,9 +56,7 @@ export class UserPage {
   }
 
   login_out() {
-    this.rest.login_out().then(() => {
-      this.app.getRootNav().setRoot(LoginPage);
-    });
+    this.rest.login_out();
   }
 
 }

@@ -39,6 +39,7 @@ export class Msg {
     content: string;
     type: string;
     type_id: number;
+    unread: number;
 }
 
 export class Job {

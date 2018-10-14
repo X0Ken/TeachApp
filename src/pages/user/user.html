@@ -24,6 +24,7 @@
     <button ion-item no-lines (click)="goTalkList()">
       <ion-icon name='chatbubbles' item-start style="color: #cc66fc"></ion-icon>
       消息
+      <ion-badge item-end> {{ msgProvider.msgs.length }}</ion-badge>
     </button>
 
     <button ion-item no-lines (click)="goAllOrder()">

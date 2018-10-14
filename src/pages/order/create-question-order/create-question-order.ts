@@ -4,7 +4,6 @@ import { ToastController } from 'ionic-angular';
 import { ContactPage } from '../../user/contact/contact';
 import { Order, User, Question } from '../../models';
 import { RestProvider } from '../../../providers/rest/rest';
-import { deepCopy } from 'ionic-angular/umd/util/util';
 
 @Component({
   selector: 'page-create-question-order',

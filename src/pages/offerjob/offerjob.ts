@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
-import { SearchPage } from '../common/search/search';
-
 import { TeacherListPage } from '../offerjob/teacher-list/teacher-list';
 import { RestProvider } from '../../providers/rest/rest';
 import { School, Region } from '../models';

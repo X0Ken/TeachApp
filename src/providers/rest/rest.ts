@@ -6,7 +6,7 @@ import { GlobalSettingService } from '../../pages/global'
 
 import { Events } from 'ionic-angular';
 import { User, AnswerKeywords, Msg, Job, Order, Question, Teacher, UserInfo, School, Region, Evaluate } from '../../pages/models';
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 /*
   Generated class for the RestProvider provider.
@@ -28,7 +28,6 @@ export class RestProvider {
   }
 
   check_login() {
-    console.log('GlobalSetting.user:', this.globalSetting.user);
     return this.globalSetting.user;
   }
 
@@ -144,10 +143,11 @@ export class RestProvider {
   }
 
   login_out() {
-    var promise = new Promise((resolve, reject) => {
+    var promise = new Promise(async (resolve, reject) => {
       console.log('Login out');
-      this.storage.remove('token_id');
+      await this.storage.remove('token_id');
       this.globalSetting.user = null;
+      this.events.publish('user:login');
       resolve();
     });
     return promise;
@@ -361,14 +361,10 @@ export class RestProvider {
   handle_http_error(error: Response): boolean {
     if (error.status == 401) {
       console.log("events 'user:login' ");
-      this.go_login();
+      this.login_out();
       return true;
     }
     return false;
-  }
-
-  go_login() {
-    this.events.publish('user:login');
   }
 
   async put_question(question) {
@@ -727,6 +723,16 @@ export class RestProvider {
   create_user_evaluate(eva: Evaluate): Promise<Evaluate> {
     let url = this.serverAddress + '/api/evaluates/' + eva.user_id;
     return this.hput(url, { evaluate: eva }, "evaluate");
+  }
+
+  list_unread_msgs(): Promise<Msg[]> {
+    let url = this.serverAddress + '/api/msgs/unread';
+    return this.hget(url, "msgs");
+  }
+
+  mark_msg_read(id: number): Promise<Msg> {
+    let url = this.serverAddress + '/api/msgs/read/' + id;
+    return this.hpost(url, {}, "msg");
   }
 
 }

@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../../providers/rest/rest';
 import { User, Job, Msg } from '../../models'
 import { CreateJobOrderPage } from '../../order/create-job-order/create-job-order';
+import { MsgCheckProvider } from '../../../providers/msg';
 
 @Component({
   selector: 'page-talk-job',
@@ -22,12 +23,18 @@ export class TalkJobPage {
 
   constructor(public navCtrl: NavController,
     private rest: RestProvider,
+    public msgProvider: MsgCheckProvider,
     params: NavParams) {
     this.receiver = params.get("receiver");
     this.job = params.get("job");
     this.items = [];
-    this.load_self_info();
-    this.load_msgs();
+    this.load_data();
+
+  }
+
+  async load_data() {
+    await this.load_self_info();
+    await this.load_msgs();
   }
 
   async load_self_info() {
@@ -38,6 +45,11 @@ export class TalkJobPage {
 
   async load_msgs() {
     let items = await this.rest.get_job_user_msg(this.job['id'], this.receiver.id);
+    items.map(msg => {
+      if (msg.unread == 1 && msg.receiver_id == this.me.id) {
+        this.rest.mark_msg_read(msg.id);
+      }
+    });
     // console.log("msgs:", this.items)
     let new_items = [];
     for (let item of items) {
@@ -75,12 +87,15 @@ export class TalkJobPage {
   }
 
   ionViewDidEnter() {
+    this.msgProvider.set_disable("job", this.job.id, this.receiver.id);
     this.worker = setInterval(() => {
       this.load_msgs();
     }, 500);
+
   }
 
   ionViewWillLeave() {
+    this.msgProvider.clear_disable();
     clearInterval(this.worker);
   }
 

@@ -4,6 +4,7 @@ import { Msg, User } from '../../models';
 import { RestProvider } from '../../../providers/rest/rest';
 import { TalkJobPage } from '../job/talk';
 import { TalkQuestionPage } from '../question/talk';
+import { MsgCheckProvider } from '../../../providers/msg';
 
 @Component({
   selector: 'page-talk-list',
@@ -15,6 +16,7 @@ export class TalkListPage {
   me: User;
 
   constructor(public navCtrl: NavController,
+    public msgProvider: MsgCheckProvider,
     private rest: RestProvider) {
     this.load_msgs();
   }

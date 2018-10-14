@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { BackgroundMode } from '@ionic-native/background-mode';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { GlobalSettingService } from "../pages/global";
 import { AskPage } from '../pages/ask/ask-write/ask';
@@ -46,6 +48,7 @@ import { SchoolListPage } from '../pages/common/school-list/school-list';
 import { RegionListPage } from '../pages/common/region-list/region-list';
 import { TalkListPage } from '../pages/talk/list/list';
 import { EvaluatePage } from '../pages/order/evaluate/evaluate';
+import { MsgCheckProvider } from '../providers/msg';
 
 @NgModule({
   declarations: [
@@ -133,7 +136,10 @@ import { EvaluatePage } from '../pages/order/evaluate/evaluate';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     GlobalSettingService,
     RestProvider,
-    FileTransfer
+    FileTransfer,
+    BackgroundMode,
+    LocalNotifications,
+    MsgCheckProvider
   ]
 })
 export class AppModule { }

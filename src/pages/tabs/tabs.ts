@@ -10,6 +10,8 @@ import { LoginPage } from '../user/login/login';
 import { RestProvider } from '../../providers/rest/rest';
 import { Events } from 'ionic-angular';
 import { AnswerKeywordPage } from '../answer/keyword/keyword';
+import { MsgCheckProvider } from '../../providers/msg';
+
 
 @Component({
   selector: 'ng-if-else',
@@ -27,15 +29,17 @@ export class TabsPage {
 
   constructor(public navCtrl: NavController,
     private rest: RestProvider,
-    public events: Events
+    public events: Events,
+    public msgProvider: MsgCheckProvider
   ) {
-
     events.subscribe('user:login', () => {
       console.log('Need auth');
+      this.msgProvider.stop();
       this.go_login();
     });
     this.try_login();
   }
+
 
   go_login() {
     this.navCtrl.setRoot(LoginPage);
@@ -45,12 +49,12 @@ export class TabsPage {
     this.try_login();
   }
 
-
   try_login() {
     console.log('ts try login');
     this.rest.try_login().then(value => {
       console.log('Get user: ', value);
       this.login = true;
+      this.msgProvider.start();
       return;
     }, error => {
       console.log('Go to page LoginPage.');
@@ -58,5 +62,6 @@ export class TabsPage {
       this.go_login();
     });
   }
+
 
 }
