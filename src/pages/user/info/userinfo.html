@@ -21,23 +21,24 @@
 
       <ion-item>
         <ion-label>学历</ion-label>
-        <ion-select [(ngModel)]="userinfo.education">
+        <ion-select [(ngModel)]="userinfo.education" okText="确定" cancelText="取消">
           <ion-option value="本科">本科</ion-option>
           <ion-option value="硕士">硕士</ion-option>
           <ion-option value="博士">博士</ion-option>
+          <ion-option value="博士">其他</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>性别</ion-label>
-        <ion-select [(ngModel)]="userinfo.gender">
+        <ion-select [(ngModel)]="userinfo.gender" okText="确定" cancelText="取消">
           <ion-option value="男">男</ion-option>
           <ion-option value="女">女</ion-option>
         </ion-select>
       </ion-item>
 
       <button ion-item no-lines (click)="select_image()">
-        <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+        <ion-icon name='md-images' item-start style="color: #d03e84"></ion-icon>
         上传头像
       </button>
       <ion-item>

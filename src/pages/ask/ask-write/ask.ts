@@ -71,7 +71,7 @@ export class AskPage {
   }
 
   setPay() {
-    this.question.pay = Math.floor(Math.random() * 100);
+    this.question.pay = Math.floor(Math.random() * 25);
   }
 
   showPrompt() {
@@ -90,7 +90,6 @@ export class AskPage {
           handler: data => {
             this.question.keywords = data.keywords;
             console.log('Saved clicked');
-
             console.log(data);
           }
         }

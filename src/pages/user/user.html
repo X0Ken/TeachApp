@@ -10,9 +10,9 @@
   <div *ngIf="userinfo != null">
     <ion-item>
       <ion-thumbnail item-start>
-        <img src="{{ rest.get_res_path(user.pic) }}">
+        <img style="width:120px;height:120px" src="{{ rest.get_res_path(user.pic) }}">
       </ion-thumbnail>
-      <h2>{{ user.username }}</h2>
+      <h2 style="font-size: 4rem;">{{ user.username }}</h2>
     </ion-item>
 
     <ion-card-content>

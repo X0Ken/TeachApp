@@ -9,7 +9,7 @@
 
     <ion-item>
       <ion-label>授课方式</ion-label>
-      <ion-select [(ngModel)]="method">
+      <ion-select [(ngModel)]="method" okText="确定" cancelText="取消">
         <ion-option value="网络">网络</ion-option>
         <ion-option value="上门">上门</ion-option>
       </ion-select>
@@ -17,7 +17,7 @@
 
     <ion-item>
       <ion-label>性别</ion-label>
-      <ion-select [(ngModel)]="gender">
+      <ion-select [(ngModel)]="gender" okText="确定" cancelText="取消">
         <ion-option value="男">男</ion-option>
         <ion-option value="女">女</ion-option>
       </ion-select>
@@ -37,10 +37,11 @@
 
     <ion-item>
       <ion-label>学历</ion-label>
-      <ion-select [(ngModel)]="highest_education">
+      <ion-select [(ngModel)]="highest_education" okText="确定" cancelText="取消">
         <ion-option value="本科">本科</ion-option>
         <ion-option value="硕士">硕士</ion-option>
         <ion-option value="博士">博士</ion-option>
+        <ion-option value="其他">其他</ion-option>
       </ion-select>
     </ion-item>
 
@@ -49,7 +50,7 @@
       <ion-note item-end>
         {{ school }}
       </ion-note>
-    </button  >
+    </button>
 
     <ion-item>
       <ion-label (click)="goSearchSchoolSubject()">专业</ion-label>
@@ -60,7 +61,7 @@
 
     <ion-item>
       <ion-label>教授科目</ion-label>
-      <ion-select [(ngModel)]="subject">
+      <ion-select [(ngModel)]="subject" okText="确定" cancelText="取消">
         <ion-option value="语文">语文</ion-option>
         <ion-option value="数学">数学</ion-option>
         <ion-option value="英语">英语</ion-option>
@@ -76,7 +77,7 @@
 
     <ion-item>
       <ion-label>薪资要求</ion-label>
-      <ion-select [(ngModel)]="pay">
+      <ion-select [(ngModel)]="pay" okText="确定" cancelText="取消">
         <ion-option value="10">10</ion-option>
         <ion-option value="20">20</ion-option>
         <ion-option value="30">30</ion-option>
@@ -88,7 +89,7 @@
 
     <ion-item>
       <ion-label>授课时间</ion-label>
-      <ion-select [(ngModel)]="time">
+      <ion-select [(ngModel)]="time" okText="确定" cancelText="取消">
         <ion-option value="上午">上午</ion-option>
         <ion-option value="下午">下午</ion-option>
         <ion-option value="晚上">晚上</ion-option>
@@ -101,9 +102,7 @@
       <ion-textarea rows="16" [(ngModel)]="self_evaluate"></ion-textarea>
     </ion-item>
 
-
-    <ion-item>
-      <button ion-button round full (click)="go_back()">提交</button>
-    </ion-item>
   </ion-list>
+
+  <button class='btn-m5' ion-button full (click)="go_back()">提交</button>
 </ion-content>

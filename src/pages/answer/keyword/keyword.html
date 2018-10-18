@@ -47,16 +47,16 @@
         <ion-label floating>在此输入要添加的关键词</ion-label>
         <ion-input type="text" [(ngModel)]="input_key"></ion-input>
       </ion-item>
-      <button ion-button block (click)="add_key()">增加</button>
+      <button ion-button block (click)="add_key()" class="btn-m5">增加</button>
     </div>
 
     <div *ngIf="view_state == 'view';">
-      <button ion-button block (click)="add_view()">增加关键词</button>
-      <button ion-button block (click)="delete_view()">删除关键词</button>
+      <button ion-button block (click)="add_view()" class="btn-m5">增加关键词</button>
+      <button ion-button block (click)="delete_view()" class="btn-m5">删除关键词</button>
     </div>
 
     <div *ngIf="view_state == 'delete';">
-      <button ion-button block (click)="rm_keys()">确认删除</button>
+      <button ion-button block (click)="rm_keys()" class="btn-m5">确认删除</button>
     </div>
   </ion-toolbar>
 </ion-footer>

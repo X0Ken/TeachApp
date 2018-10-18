@@ -1,10 +1,10 @@
 <div *ngIf="login; else elseBlock">
   <ion-tabs>
-    <ion-tab [root]="tab1Root" tabTitle="提问" tabIcon="home"></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="回答" tabIcon="information-circle"></ion-tab>
-    <ion-tab [root]="tab3Root" tabTitle="找家教" tabIcon="contacts"></ion-tab>
-    <ion-tab [root]="tab4Root" tabTitle="当家教" tabIcon="information-circle"></ion-tab>
-    <ion-tab [root]="tab5Root" tabTitle="我" tabIcon="contacts" [tabBadge]='msgProvider.msgs.length'></ion-tab>
+    <ion-tab [root]="tab1Root" tabTitle="提问" tabIcon="md-help"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="回答" tabIcon="md-bulb"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="找家教" tabIcon="md-search"></ion-tab>
+    <ion-tab [root]="tab4Root" tabTitle="当家教" tabIcon="md-school"></ion-tab>
+    <ion-tab [root]="tab5Root" tabTitle="我" tabIcon="md-person" [tabBadge]='msgProvider.msgs.length'></ion-tab>
   </ion-tabs>
 </div>
 <ng-template #elseBlock></ng-template>

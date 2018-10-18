@@ -9,7 +9,7 @@
 <ion-content>
   <div *ngIf="question != null">
     <button ion-item no-lines (click)="showPrompt()">
-      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      <ion-icon name='ios-search-outline' item-start style="color: #d03e84"></ion-icon>
       关键词
       <ion-note item-end>
         {{ question.keywords }}
@@ -20,7 +20,7 @@
       <ion-textarea rows="16" [(ngModel)]="question.content"></ion-textarea>
     </ion-item>
     <button ion-item no-lines (click)="select_image()">
-      <ion-icon name='copy' item-start style="color: #d03e84"></ion-icon>
+      <ion-icon name='md-images' item-start style="color: #d03e84"></ion-icon>
       上传照片或视频
     </button>
     <div>
@@ -32,11 +32,9 @@
     <ion-item>
       <ion-label>设置金额</ion-label>
       <ion-input type="number" value="" [(ngModel)]="question.pay"></ion-input>
-      <ion-badge item-end>
-        <button ion-button color="primary" style="height: 1em" (click)="setPay()">
-          参考价格
-        </button>
-      </ion-badge>
+      <button ion-button item-end [disabled]="!question.content || !question.keywords" color="primary" (click)="setPay()">
+        参考价格
+      </button>
     </ion-item>
     <div padding>
       <button [disabled]="!question.content || !question.keywords" ion-button color="primary" block (click)="submit()">

@@ -4,6 +4,7 @@ import { ToastController } from 'ionic-angular';
 import { ContactPage } from '../../user/contact/contact';
 import { Order, User, Question } from '../../models';
 import { RestProvider } from '../../../providers/rest/rest';
+import { EvaluatePage } from '../evaluate/evaluate';
 
 @Component({
   selector: 'page-create-question-order',
@@ -124,6 +125,12 @@ export class CreateQuestionOrderPage {
 
   go_contact_Page() {
     this.navCtrl.push(ContactPage);
+  }
+
+  go_evaluate_Page() {
+    this.navCtrl.push(EvaluatePage, {
+      "order": this.order
+    });
   }
 
 }

@@ -13,7 +13,7 @@
 
       <ion-item no-lines>
         <ion-label>计时单位</ion-label>
-        <ion-select [(ngModel)]="order.unit">
+        <ion-select [(ngModel)]="order.unit" okText="确定" cancelText="取消">
           <ion-option value="次">次</ion-option>
           <ion-option value="小时">小时</ion-option>
           <ion-option value="天">天</ion-option>
@@ -63,22 +63,22 @@
         <button ion-button round block *ngIf=" order.state=='create' " (click)="acceptOrder()">确认收款</button>
       </div>
       <div *ngIf="role == 'payer' ">
-          <ion-card>
-              <ion-card-header>
-                提示
-              </ion-card-header>
-              <ion-card-content>
-                在线付款研发中，请与回答者协商付款方式，并在回答者收款后，提示其收款。
-              </ion-card-content>
-            </ion-card>
+        <ion-card>
+          <ion-card-header>
+            提示
+          </ion-card-header>
+          <ion-card-content>
+            在线付款研发中，请与回答者协商付款方式，并在回答者收款后，提示其收款。
+          </ion-card-content>
+        </ion-card>
       </div>
     </div>
 
     <div *ngIf="order.state == 'payed' ">
-      <button ion-button round block (click)="go_evaluate_Page()">评价</button>
+      <button ion-button class='btn-m5' block (click)="go_evaluate_Page()">评价</button>
     </div>
 
-    <button ion-button round block (click)="go_contact_Page()">投诉</button>
+    <button ion-button class='btn-m5' block (click)="go_contact_Page()">投诉</button>
   </div>
 
 
